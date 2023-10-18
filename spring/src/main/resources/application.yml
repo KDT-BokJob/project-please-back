@@ -4,7 +4,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
-    password: Abcd123!
+    password: 1234
+    ##Abcd123!
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -13,3 +14,6 @@ spring:
     hibernate:
       ddl-auto: update
     generate-ddl: true
+
+  profiles:
+    include: oauth
