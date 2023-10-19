@@ -11,11 +11,12 @@ services:
     ports:
       - 3308:3306
   application:
+    platform: linux/arm64
     build:
       context: ./spring
     restart: always
     ports:
-      - 8080:8080
+      - 80:8080
     depends_on: # 이 항목에 명시된 컨테이너가 먼저 생성되고 실행됨
       - database
     container_name: app
