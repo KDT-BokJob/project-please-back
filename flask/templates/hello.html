@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<title>Hello from Flask</title>
+{% if name %}
+<h1>Hello {{ name }}!</h1>
+{% else %}
+<h1>Hello World!</h1>
+{% endif %}
+<a href="http://localhost:{{ FLASK_RUN_PORT }}">Flask</a><br>
+<a href="http://localhost:{{ SPRING_RUN_PORT }}">Spring</a><br>
+</body>
+</html>
+
