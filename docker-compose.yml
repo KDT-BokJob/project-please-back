@@ -1,0 +1,24 @@
+version: "3"
+services:
+  database:
+    image: mysql
+    container_name: db
+    environment:
+      - MYSQL_DATABASE=please
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_ROOT_PASSWORD=Abcd123!
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    ports:
+      - 3308:3306
+  application:
+    image: jh0903/please-server
+    restart: always
+    ports:
+      - 80:8080
+    depends_on: # 이 항목에 명시된 컨테이너가 먼저 생성되고 실행됨
+      - database
+    container_name: app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/please?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Abcd123!
