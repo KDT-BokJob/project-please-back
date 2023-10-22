@@ -31,10 +31,15 @@ jobs:
     - name: init with Gradle
       uses: gradle/gradle-build-action@v2
     - run: gradle init
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
-      with:
-        arguments: build
+    ## Build Gradle
+    - name: Build with Gradle  
+      run: |
+        cd spring
+        ./gradlew build
+    # - name: Build with Gradle
+    #   uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
+    #   with:
+    #     arguments: build
 
     ## 웹 이미지 빌드 및 도커허브에 push
     - name: web docker build and push
