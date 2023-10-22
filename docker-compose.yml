@@ -11,8 +11,7 @@ services:
     ports:
       - 3308:3306
   application:
-    build:
-      context: ./spring
+    image: jh0903/please-server
     restart: always
     ports:
       - 80:8080
