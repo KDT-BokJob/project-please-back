@@ -1,7 +1,7 @@
 package com.kdt.please.domain.review;
 
 import com.kdt.please.domain.recruit.Recruit;
-import com.kdt.please.domain.recruiter.Recruiter;
+import com.kdt.please.domain.company.Company;
 import com.kdt.please.domain.user.User;
 import com.kdt.please.global.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -22,17 +22,15 @@ public class Review extends BaseEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "recruit_id")
-    private Recruit recruit;
-
-    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "recruiter_id")
-    private Recruiter recruiter;
+    @JoinColumn(name = "company_id")
+    private Company company;
 
-    private String reviewType;
+ //   private String reviewType;
+    @Enumerated(EnumType.STRING)
+    private ReviewState state;
 
 }

@@ -1,5 +1,6 @@
 package com.kdt.please.domain.user;
 
+import com.kdt.please.domain.company.Company;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,7 +19,13 @@ public class User {
     @Id @GeneratedValue
     private Long id;
 
+    @OneToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
     private String email;
+
+    private String name;
 
     private String profileImg;
 
@@ -32,5 +39,7 @@ public class User {
     private UserRole userRole;
 
     private String gender;
+
+    private String stayDuration;
 
 }

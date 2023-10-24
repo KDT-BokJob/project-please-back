@@ -1,12 +1,12 @@
 package com.kdt.please.domain.recruit;
 
-import com.kdt.please.domain.recruiter.Recruiter;
+import com.kdt.please.domain.company.Company;
+import com.kdt.please.domain.user.User;
 import com.kdt.please.global.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -24,7 +24,11 @@ public class Recruit extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "recruiter_id")
-    private Recruiter recruiter;
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
 
     private String title;
 
@@ -32,19 +36,18 @@ public class Recruit extends BaseEntity {
 
     private LocalDate endTime;
 
-    private Integer salary;
+    private Integer pay;
 
     private String workType;
 
-    private String jobType;
+    private String jobName;
 
-    private String region;
+    private String location;
 
-    private String day;
+    private String workingHours;
 
-    private String time;
+    private String visa;
 
-    private Double latitude;
+    private String workingPeriod;
 
-    private Double longitude;
 }

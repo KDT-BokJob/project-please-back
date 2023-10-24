@@ -1,7 +1,6 @@
-package com.kdt.please.domain.recruiter;
+package com.kdt.please.domain.company;
 
 import com.kdt.please.domain.user.User;
-import com.kdt.please.global.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,18 +13,16 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Recruiter {
+public class Company {
 
     @Id @GeneratedValue
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
     private String businessId;
 
-    private String businessName;
+    private String name;
 
-    private Integer businessManCount;
+    private Integer manCount;
+
+    private Integer foreignCount;
 }
