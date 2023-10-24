@@ -79,8 +79,7 @@ INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '11200', 
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '11201', '얼음 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '11202', '생수 생산업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '11209', '기타 비알코올 음료 제조업' );
-INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '12000', '담배 제조업' );
-INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '12000', '담배제품 제조업' );
+INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '12000', '	담배제품 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '13000', '섬유제품 제조업; 의복 제외' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '13100', '방적 및 가공사 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '13101', '면 방적업' );
@@ -499,7 +498,6 @@ INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '27215', 
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '27216', '산업 처리공정 제어장비 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '27219', '기타 측정, 시험, 항해, 제어 및 정밀 기기 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '27300', '사진장비 및 광학 기기 제조업' );
-INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '27300', '사진장비 및 광학기기 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '27301', '광학 렌즈 및 광학 요소 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '27302', '사진기, 영사기 및 관련 장비 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '27309', '기타 광학 기기 제조업' );
@@ -758,7 +756,7 @@ INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '46205', 
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '46209', '기타 산업용 농산물 도매업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '46400', '생활용품 도매업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '46500', '기계장비 및 관련 물품 도매업' );
-INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '46791', '재생용 재료 수집 및 판매업' );f
+INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '46791', '재생용 재료 수집 및 판매업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '47500', '기타 생활용품 소매업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '47800', '기타 상품 전문 소매업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'H-2', '47900', '무점포 소매업' );
@@ -865,7 +863,6 @@ INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '11200', 
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '11201', '얼음 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '11202', '생수 생산업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '11209', '기타 비알코올 음료 제조업' );
-INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '12000', '담배 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '12000', '담배제품 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '13000', '섬유제품 제조업; 의복 제외' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '13100', '방적 및 가공사 제조업' );
@@ -1285,7 +1282,6 @@ INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '27215', 
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '27216', '산업 처리공정 제어장비 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '27219', '기타 측정, 시험, 항해, 제어 및 정밀 기기 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '27300', '사진장비 및 광학 기기 제조업' );
-INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '27300', '사진장비 및 광학기기 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '27301', '광학 렌즈 및 광학 요소 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '27302', '사진기, 영사기 및 관련 장비 제조업' );
 INSERT INTO test.Visa_job ( visa, job_code, job_name ) VALUES ( 'E-9', '27309', '기타 광학 기기 제조업' );
