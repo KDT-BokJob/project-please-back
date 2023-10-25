@@ -8,9 +8,7 @@ import javax.persistence.Id;
 public class VisaJob {
 
     @Id @GeneratedValue
-    private String jobCode;
-
+    private VisaJobId visaJobId;
     private String jobName;
 
-    private String visa;
 }
