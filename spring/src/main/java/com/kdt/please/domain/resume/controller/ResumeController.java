@@ -5,14 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/resumes")
+//@RestController("/resumes")
 public class ResumeController {
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<Void> createResume(@RequestBody ResumeCreateRequest resumeCreateRequest){
         return ResponseEntity.ok().build();
     }
 
-//    @GetMapping()
-//    public ResponseEntity
 }

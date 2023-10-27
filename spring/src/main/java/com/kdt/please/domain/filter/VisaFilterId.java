@@ -1,17 +1,18 @@
-package com.kdt.please.domain.visaJob;
+package com.kdt.please.domain.filter;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
+@Data
 @NoArgsConstructor
-@EqualsAndHashCode
 @AllArgsConstructor
-public class VisaJobId implements Serializable {
-    private String jobCode;
+public class VisaFilterId implements Serializable {
+
+    private Integer jobCode;
     private String visa;
 }

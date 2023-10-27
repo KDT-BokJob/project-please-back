@@ -3,7 +3,7 @@ package com.kdt.please.domain.career;
 import com.kdt.please.domain.resume.Resume;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 public class Career {
@@ -15,8 +15,8 @@ public class Career {
     private Resume resume;
     private String job;
     private String role;
-    private LocalDateTime hireDate;
-    private LocalDateTime endDate;
+    private LocalDate hireDate;
+    private LocalDate endDate;
 
     private String workPerformance;
     private String detailInfo;
