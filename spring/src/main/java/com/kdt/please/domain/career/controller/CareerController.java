@@ -1,18 +1,17 @@
 package com.kdt.please.domain.career.controller;
 
-import com.kdt.please.domain.career.Career;
 import com.kdt.please.domain.career.service.request.CareerCreateRequest;
-import com.kdt.please.domain.resume.service.request.ResumeCreateRequest;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController("/careers")
+@RestController
+@RequestMapping("/careers")
 public class CareerController {
 
-    @PostMapping
-    public ResponseEntity<Void> createCareer(@RequestBody CareerCreateRequest careerCreateRequest){
+    @ApiOperation("경력 등록")
+    @PostMapping("/{resumeId}")
+    public ResponseEntity<Void> createCareer(@PathVariable final Long resumeId, @RequestBody CareerCreateRequest req){
         return ResponseEntity.ok().build();
     }
 }

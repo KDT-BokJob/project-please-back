@@ -1,19 +1,31 @@
 package com.kdt.please.domain.resume.service.request;
 
+import com.kdt.please.domain.resume.Resume;
 import io.swagger.annotations.ApiModel;
 public record ResumeCreateRequest(
         Long userId,
-        String email,
-        String country,
-        String lastName,
-        String middleName,
+        String nationality,
         String firstName,
-        String visa,
+        String middleName,
+        String lastName,
         String koreanProficiency,
-        boolean disabled,
-        String residence,
-        String education,
-        String major
+        String coverLetter,
+        String degree,
+        boolean isExperienced,
+        boolean isDisabled
 
 ) {
+    public Resume toEntity(){
+        return Resume.builder()
+                .nationality(nationality)
+                .firstName(firstName)
+                .middleName(middleName)
+                .lastName(lastName)
+                .koreanProficiency(koreanProficiency)
+                .coverLetter(coverLetter)
+                .degree(degree)
+                .isExperienced(isExperienced)
+                .isDisabled(isDisabled).build();
+
+    }
 }
