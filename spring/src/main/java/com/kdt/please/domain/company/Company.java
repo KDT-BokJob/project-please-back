@@ -18,11 +18,15 @@ public class Company {
     @Id @GeneratedValue
     private Long id;
 
-    private String businessId;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User userId;
+
+    private String businessCode;
 
     private String name;
 
-    private Integer manCount;
+    private int employeeCount;
 
-    private Integer foreignCount;
+    private int foreignEmployeeCount;
 }

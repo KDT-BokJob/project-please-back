@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Builder
@@ -23,31 +24,31 @@ public class Recruit extends BaseEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "recruiter_id")
-    private User user;
-
-    @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
+
+    private String job_code;
 
     private String title;
 
     private String content;
 
-    private LocalDate endTime;
+    private LocalDate createdAt;
 
-    private Integer pay;
+    private LocalDate expiredAt;
+
+    private Integer salary;
 
     private String workType;
 
-    private String jobName;
+    private String workLocation;
 
-    private String location;
+    private int workPeriod;
 
-    private String workingHours;
+    private int workDaysWeek;
 
-    private String visa;
+    private int workStartHour;
 
-    private String workingPeriod;
+    private int workEndHour;
 
 }

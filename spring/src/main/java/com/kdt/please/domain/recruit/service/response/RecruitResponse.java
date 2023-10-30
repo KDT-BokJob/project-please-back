@@ -1,9 +1,13 @@
-package com.kdt.please.domain.recruit.service.request;
+package com.kdt.please.domain.recruit.service.response;
 
-import java.time.LocalDate;
+import lombok.Builder;
+
 import java.time.LocalDateTime;
 
-public record RecruitUpdateRequest(
+@Builder
+public record RecruitResponse(
+        // 공고 ID
+        Long recruitId,
         // 기업 ID
         Long companyId,
         // 직업코드
@@ -13,9 +17,9 @@ public record RecruitUpdateRequest(
         // 내용
         String content,
         // 작성일
-        LocalDate createdAt,
+        LocalDateTime createdAt,
         // 마감일
-        LocalDate expiredAt,
+        LocalDateTime expiredAt,
         // 급여
         Integer salary,
         // 근무 형태
@@ -30,6 +34,5 @@ public record RecruitUpdateRequest(
         int workPeriod,
         // 주중 근무 일수
         int workDaysWeek
-
 ) {
 }
