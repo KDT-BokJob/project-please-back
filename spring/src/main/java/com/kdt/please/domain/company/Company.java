@@ -20,7 +20,7 @@ public class Company {
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
 
     private String businessCode;
 

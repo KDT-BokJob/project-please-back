@@ -1,5 +1,8 @@
 package com.kdt.please.domain.company.service.response;
 
+import lombok.Builder;
+
+@Builder
 public record CompanyResponse(
         // 기업 ID
         Long companyId,

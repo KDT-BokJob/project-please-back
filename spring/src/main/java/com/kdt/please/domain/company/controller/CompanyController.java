@@ -13,9 +13,18 @@ import org.springframework.web.bind.annotation.*;
 public class CompanyController {
 
     @ApiOperation("기업 조회")
-    @GetMapping("/{companyId}")
-    public ResponseEntity<CompanyResponse> getCompany(@PathVariable Long companyId){
-        return ResponseEntity.ok().build();
+    @GetMapping("/{userId}")
+    public ResponseEntity<CompanyResponse> getCompany(@PathVariable Long userId){
+        return ResponseEntity.ok(
+                CompanyResponse.builder()
+                        .companyId(1L)
+                        .userId(1L)
+                        .businessCode("01200")
+                        .name("축산마을")
+                        .employeeCount(50)
+                        .foreignEmployeeCount(5)
+                        .build()
+        );
     }
 
     @ApiOperation("기업 등록")
