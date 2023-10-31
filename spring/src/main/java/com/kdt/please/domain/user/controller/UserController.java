@@ -18,9 +18,9 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
-    @ApiOperation("회원가입 추가정보 입력")
+    @ApiOperation("회원가입 추가정보 입력 (구직자)")
     @PostMapping("/{userId}")
-    public ResponseEntity<Void> createInfo(@PathVariable final Long userId, @RequestBody UserInfoRequest userInfoRequest){
+    public ResponseEntity<Void> createUserInfo(@PathVariable final Long userId, @RequestBody UserInfoRequest userInfoRequest){
         return ResponseEntity.ok().build();
     }
 

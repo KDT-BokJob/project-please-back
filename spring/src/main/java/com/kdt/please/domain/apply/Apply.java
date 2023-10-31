@@ -30,5 +30,6 @@ public class Apply {
 
     private Long resumeId;
 
+    @Enumerated(EnumType.STRING)
     private Status status;
 }

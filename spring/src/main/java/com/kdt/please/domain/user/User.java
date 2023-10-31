@@ -19,10 +19,6 @@ public class User {
     @Id @GeneratedValue
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "company_id")
-    private Company company;
-
     private String email;
 
     private String name;
