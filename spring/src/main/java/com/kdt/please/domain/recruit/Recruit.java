@@ -1,15 +1,16 @@
 package com.kdt.please.domain.recruit;
 
-import com.kdt.please.domain.recruiter.Recruiter;
+import com.kdt.please.domain.company.Company;
+import com.kdt.please.domain.user.User;
 import com.kdt.please.global.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Builder
@@ -23,28 +24,31 @@ public class Recruit extends BaseEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "recruiter_id")
-    private Recruiter recruiter;
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+    private String job_code;
 
     private String title;
 
     private String content;
 
-    private LocalDate endTime;
+    private LocalDate createdAt;
+
+    private LocalDate expiredAt;
 
     private Integer salary;
 
     private String workType;
 
-    private String jobType;
+    private String workLocation;
 
-    private String region;
+    private int workPeriod;
 
-    private String day;
+    private int workDaysWeek;
 
-    private String time;
+    private int workStartHour;
 
-    private Double latitude;
+    private int workEndHour;
 
-    private Double longitude;
 }

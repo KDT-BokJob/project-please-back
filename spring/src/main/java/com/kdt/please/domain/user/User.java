@@ -1,5 +1,6 @@
 package com.kdt.please.domain.user;
 
+import com.kdt.please.domain.company.Company;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,6 +21,8 @@ public class User {
 
     private String email;
 
+    private String name;
+
     private String profileImg;
 
     private String phone;
@@ -32,5 +35,7 @@ public class User {
     private UserRole userRole;
 
     private String gender;
+
+    private String stayDuration;
 
 }

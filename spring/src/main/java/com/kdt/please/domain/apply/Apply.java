@@ -31,8 +31,5 @@ public class Apply {
     private Long resumeId;
 
     @Enumerated(EnumType.STRING)
-    private Status resumeStatus;
-
-    @Enumerated(EnumType.STRING)
-    private Status finalStatus;
+    private Status status;
 }

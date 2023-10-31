@@ -24,17 +24,22 @@ public class Resume {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private String title;
+    private String nationality;
 
-    private String content;
+    private String firstName;
 
-    private String country;
+    private String middleName;
 
-    private LocalDate birth;
+    private String lastName;
 
-    private String careerPeriod;
+    private String koreanProficiency;
 
-    private String careerJob;
+    private String coverLetter;
 
-    private String careerDetail;
+    private String degree;
+
+    private boolean isExperienced;
+
+    private boolean isDisabled;
+
 }

@@ -1,0 +1,32 @@
+package com.kdt.please.domain.company;
+
+import com.kdt.please.domain.user.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@Getter
+@Builder
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+public class Company {
+
+    @Id @GeneratedValue
+    private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User userId;
+
+    private String businessCode;
+
+    private String name;
+
+    private int employeeCount;
+
+    private int foreignEmployeeCount;
+}
