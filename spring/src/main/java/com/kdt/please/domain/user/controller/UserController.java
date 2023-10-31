@@ -1,11 +1,11 @@
 package com.kdt.please.domain.user.controller;
 
-import com.kdt.please.domain.resume.service.request.ResumeCreateRequest;
 import com.kdt.please.domain.user.UserRole;
 import com.kdt.please.domain.user.service.request.UserInfoRequest;
 import com.kdt.please.domain.user.service.request.UserUpdateRequest;
 import com.kdt.please.domain.user.service.response.UserInfoResponse;
-import io.swagger.annotations.ApiModel;
+import com.kdt.please.domain.userVisa.dto.UserVisaRequest;
+import com.kdt.please.domain.userVisa.dto.UserVisaUpdateRequest;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -67,6 +67,24 @@ public class UserController {
                 .profileImage("http://dfdfsdf")
                 .build());
         return ResponseEntity.ok(userList);
+    }
+
+    @ApiOperation("내 비자 정보 등록")
+    @PostMapping("/visa/{userId}")
+    public ResponseEntity<Void> setMyVisa(@PathVariable final Long userId, @RequestBody @Valid UserVisaRequest userVisaRequest){
+        return ResponseEntity.ok().build();
+    }
+
+    @ApiOperation("내 비자 정보 수정")
+    @PutMapping("/visa/{userId}")
+    public ResponseEntity<Void> deleteMyVisa(@PathVariable final Long userId, @RequestBody @Valid UserVisaUpdateRequest userVisaUpdateRequest){
+        return ResponseEntity.ok().build();
+    }
+
+    @ApiOperation("내 비자 정보 조회")
+    @GetMapping("/visa/{userId}")
+    public ResponseEntity<Void> getMyVisa(@PathVariable final Long userId){
+        return ResponseEntity.ok().build();
     }
 
 }
