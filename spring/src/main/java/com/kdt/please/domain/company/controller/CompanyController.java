@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 public class CompanyController {
 
     @ApiOperation("기업 조회")
-    @GetMapping("/{userId}")
-    public ResponseEntity<CompanyResponse> getCompany(@PathVariable Long userId){
+    @GetMapping("/{companyId}")
+    public ResponseEntity<CompanyResponse> getCompany(@PathVariable Long companyId){
         return ResponseEntity.ok(
                 CompanyResponse.builder()
                         .companyId(1L)

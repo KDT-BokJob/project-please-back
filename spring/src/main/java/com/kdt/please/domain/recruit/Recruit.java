@@ -1,6 +1,7 @@
 package com.kdt.please.domain.recruit;
 
 import com.kdt.please.domain.company.Company;
+import com.kdt.please.domain.filter.JobCode;
 import com.kdt.please.domain.user.User;
 import com.kdt.please.global.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -27,7 +28,9 @@ public class Recruit extends BaseEntity {
     @JoinColumn(name = "company_id")
     private Company company;
 
-    private String job_code;
+    @OneToOne
+    @JoinColumn(name = "job_code")
+    private JobCode job_code;
 
     private String title;
 
