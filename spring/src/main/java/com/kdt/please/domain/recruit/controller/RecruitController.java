@@ -55,9 +55,15 @@ public class RecruitController {
         return ResponseEntity.ok().build();
     }
 
-    @ApiOperation("공고 목록 조회")
+    @ApiOperation("기업이 올린 공고 목록 조회")
     @GetMapping("/{companyId}/list")
     public ResponseEntity<RecruitResponse[]> getRecruitList(@ApiParam(value = "기업ID") @PathVariable(value = "companyId") Long companyId){
+        return ResponseEntity.ok().build();
+    }
+
+    @ApiOperation("전체 공고 목록 조회")
+    @GetMapping("/list/all")
+    public ResponseEntity<RecruitResponse[]> getRecruitListAll(){
         return ResponseEntity.ok().build();
     }
 
@@ -67,9 +73,11 @@ public class RecruitController {
         return ResponseEntity.ok().build();
     }
 
-    @ApiOperation("직업코드로 공고 조회")
-    @GetMapping("/job-code/{job_code}")
-    public ResponseEntity<RecruitResponse[]> getRecruitByJobCode(@ApiParam(value = "키워드") @PathVariable String job_code){
+    @ApiOperation("비자로 공고 조회")
+    @GetMapping("/visa/{visa}")
+    public ResponseEntity<RecruitResponse[]> getRecruitByJobCode(@ApiParam(value = "비자") @PathVariable String visa){
+        // 비자로 직업코드들을 조회하고
+        // 해당 직업코드들의 공고 목록을 조회
         return ResponseEntity.ok().build();
     }
 }

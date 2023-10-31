@@ -14,7 +14,7 @@ public class VisaFilter {
 
     @OneToOne
     @MapsId("jobCode")
-    private NameFilter nameFilter;
+    private JobCode jobCode;
 
     @OneToOne
     @MapsId("visa")
