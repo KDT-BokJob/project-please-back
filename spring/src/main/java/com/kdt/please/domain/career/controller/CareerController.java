@@ -7,13 +7,15 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/careers")
 public class CareerController {
 
     @ApiOperation("경력 등록")
     @PostMapping("")
-    public ResponseEntity<Long> createCareer(@RequestBody CareerCreateRequest req){
+    public ResponseEntity<Long> createCareer(@RequestBody @Valid CareerCreateRequest req){
         return ResponseEntity.ok(1L);
     }
 
@@ -25,7 +27,7 @@ public class CareerController {
 
     @ApiOperation("경력 수정")
     @PutMapping("/{careerId}")
-    public ResponseEntity<Long> updateCareer(@PathVariable final Long careerId, @RequestBody CareerUpdateRequest req){
+    public ResponseEntity<Long> updateCareer(@PathVariable final Long careerId, @RequestBody @Valid CareerUpdateRequest req){
         return ResponseEntity.ok(1L);
     }
 

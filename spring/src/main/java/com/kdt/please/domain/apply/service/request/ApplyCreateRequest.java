@@ -8,14 +8,16 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 public record ApplyCreateRequest(
 
+        @NotNull @Positive
         long userId,
-
+        @NotNull @Positive
         long recruitId,
-
-        long resumeId,
-        Status status
+        @NotNull @Positive
+        long resumeId
 ) {
 }

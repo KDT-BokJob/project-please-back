@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,13 +20,13 @@ public class ApplyController {
 
     @ApiOperation("공고에 지원")
     @PostMapping("")
-    public ResponseEntity<Long> applyFor(@RequestBody ApplyCreateRequest applyCreateRequest){
+    public ResponseEntity<Long> applyFor(@RequestBody @Valid ApplyCreateRequest applyCreateRequest){
         return ResponseEntity.ok(1L);
     }
 
     @ApiOperation("지원 상세 정보 조회")
     @GetMapping("/{applyId}")
-    public ResponseEntity<ApplyResponse> getApplyInfo(@RequestBody ApplyResponse applyResponse){
+    public ResponseEntity<ApplyResponse> getApplyInfo(@RequestBody @Valid ApplyResponse applyResponse){
         return ResponseEntity.ok(ApplyResponse.builder()
                 .applyId(1L)
                 .userId(2L)
@@ -37,13 +38,13 @@ public class ApplyController {
 
     @ApiOperation("면접자 선정")
     @PostMapping("/interviewer/{applyId}")
-    public ResponseEntity<Long> setInterviewer(@PathVariable final Long applyId, @RequestBody SelectInterviewerRequest interviewerRequest){
+    public ResponseEntity<Long> setInterviewer(@PathVariable final Long applyId, @RequestBody @Valid SelectInterviewerRequest interviewerRequest){
         return ResponseEntity.ok(1L);
     }
 
     @ApiOperation("근로자 선정")
     @PostMapping("/employee/{applyId}")
-    public ResponseEntity<Long> setEmployee(@PathVariable final Long applyId, @RequestBody SelectEmployeeRequest employeeRequest){
+    public ResponseEntity<Long> setEmployee(@PathVariable final Long applyId, @RequestBody @Valid SelectEmployeeRequest employeeRequest){
         return ResponseEntity.ok(1L);
     }
 

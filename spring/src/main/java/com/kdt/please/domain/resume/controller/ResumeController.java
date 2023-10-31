@@ -7,13 +7,15 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/resumes")
 public class ResumeController {
 
     @ApiOperation("이력서 등록")
     @PostMapping("/{userId}")
-    public ResponseEntity<Void> createResume(@PathVariable final Long userId, @RequestBody ResumeCreateRequest resumeCreateRequest){
+    public ResponseEntity<Void> createResume(@PathVariable final Long userId, @RequestBody @Valid ResumeCreateRequest resumeCreateRequest){
         return ResponseEntity.ok().build();
     }
 
@@ -35,7 +37,7 @@ public class ResumeController {
 
     @ApiOperation("이력서 수정")
     @PutMapping("/{resumeId}")
-    public ResponseEntity<ResumeResponse> updateResume(@PathVariable final Long resumeId, @RequestBody ResumeUpdateReq req){
+    public ResponseEntity<ResumeResponse> updateResume(@PathVariable final Long resumeId, @RequestBody @Valid ResumeUpdateReq req){
         return ResponseEntity.ok().build();
     }
 

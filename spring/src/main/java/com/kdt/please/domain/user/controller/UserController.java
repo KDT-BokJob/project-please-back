@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class UserController {
 
     @ApiOperation("회원가입 추가정보 입력 (구직자)")
     @PostMapping("/{userId}")
-    public ResponseEntity<Void> createUserInfo(@PathVariable final Long userId, @RequestBody UserInfoRequest userInfoRequest){
+    public ResponseEntity<Void> createUserInfo(@PathVariable final Long userId, @RequestBody @Valid UserInfoRequest userInfoRequest){
         return ResponseEntity.ok().build();
     }
 
