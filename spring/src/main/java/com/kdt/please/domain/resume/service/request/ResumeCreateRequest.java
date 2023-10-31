@@ -3,7 +3,6 @@ package com.kdt.please.domain.resume.service.request;
 import com.kdt.please.domain.resume.Resume;
 import io.swagger.annotations.ApiModel;
 public record ResumeCreateRequest(
-        Long userId,
         String nationality,
         String firstName,
         String middleName,

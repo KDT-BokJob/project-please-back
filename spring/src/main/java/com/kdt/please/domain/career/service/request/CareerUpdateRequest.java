@@ -1,17 +1,11 @@
 package com.kdt.please.domain.career.service.request;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.kdt.please.domain.resume.Resume;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-@Builder
-public record CareerCreateRequest(
-        long resumeId,
+public record CareerUpdateRequest(
         @ApiModelProperty(value = "직무")
         String job,
         String role,
@@ -22,4 +16,5 @@ public record CareerCreateRequest(
         String workPerformance,
         String detailInfo
 ) {
+
 }
