@@ -22,7 +22,7 @@ public class Recruit extends BaseEntity {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long recruitId;
 
     @ManyToOne
     @JoinColumn(name = "company_id")

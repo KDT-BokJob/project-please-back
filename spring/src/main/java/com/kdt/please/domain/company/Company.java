@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Company {
 
     @Id @GeneratedValue
-    private Long id;
+    private Long companyId;
 
     @OneToOne
     @JoinColumn(name = "user_id")

@@ -7,5 +7,5 @@ import javax.persistence.Id;
 public class Visa {
     @Id
     private String visa;
-    private Integer period;
+    private Integer validityPeriod;
 }

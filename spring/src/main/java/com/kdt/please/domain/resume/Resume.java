@@ -18,7 +18,7 @@ public class Resume {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long resumeId;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

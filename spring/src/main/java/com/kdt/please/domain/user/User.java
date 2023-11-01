@@ -17,12 +17,13 @@ import java.time.LocalDate;
 public class User {
 
     @Id @GeneratedValue
-    private Long id;
+    private Long userId;
 
     private String email;
 
     private String name;
 
+    @Column(length = 1000)
     private String profileImage;
 
     private String phone;
