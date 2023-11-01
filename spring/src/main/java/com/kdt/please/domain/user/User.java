@@ -40,4 +40,27 @@ public class User {
 
     private String hexaco;
 
+    @Builder
+    public User(String name, String email, String profileImg, String phone, LocalDate birth, String address,
+                UserRole userRole, String gender) {
+        this.name = name;
+        this.email = email;
+        this.profileImage = profileImg;
+        this.phone = phone;
+        this.birthdate = birth;
+        this.role = userRole;
+        this.address = address;
+        this.gender = gender;
+    }
+
+    public User update(String name, String profileImg) {
+        this.name = name;
+        this.profileImage = profileImg;
+
+        return this;
+    }
+
+    public String getRoleKey() {
+        return this.role.getRole();
+    }
 }
