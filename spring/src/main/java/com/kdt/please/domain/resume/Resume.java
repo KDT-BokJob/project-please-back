@@ -38,6 +38,8 @@ public class Resume {
 
     private String degree;
 
+    private LocalDate birthdate;
+
     private boolean isExperienced;
 
     private boolean isDisabled;

@@ -17,7 +17,7 @@ public class UserVisa {
     @JoinColumn(name = "user_id")
     private User user;
     @OneToOne
-    @JoinColumn(name = "visa_id")
+    @JoinColumn(name = "visa")
     private Visa visa;
     private LocalDate createdAt;
     private LocalDate expiredAt;

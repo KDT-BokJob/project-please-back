@@ -23,19 +23,21 @@ public class User {
 
     private String name;
 
-    private String profileImg;
+    private String profileImage;
 
     private String phone;
 
-    private LocalDate birth;
+    private LocalDate birthdate;
 
     private String address;
 
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    private UserRole role;
 
     private String gender;
 
-    private String stayDuration;
+    private String period;
+
+    private String hexaco;
 
 }
