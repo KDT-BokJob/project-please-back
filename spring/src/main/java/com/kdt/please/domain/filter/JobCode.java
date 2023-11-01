@@ -6,7 +6,7 @@ import javax.persistence.Id;
 @Entity
 public class JobCode {
     @Id
-    private Integer jobCode;
+    private String jobCode;
 
     private String jobName;
 }

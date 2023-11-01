@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 @RestController
@@ -18,14 +19,14 @@ public class RecruitController {
     @ApiOperation("공고 등록")
     @PostMapping("/{companyId}")
     public ResponseEntity<RecruitResponse> createRecruit(@ApiParam(value = "기업ID") @PathVariable(value = "conpanyId") Long conpanyId,
-                                              @RequestBody RecruitCreateRequest recruitCreateRequest){
+                                              @RequestBody @Valid RecruitCreateRequest recruitCreateRequest){
         return ResponseEntity.ok().build();
     }
 
     @ApiOperation("공고 수정")
     @PutMapping("/{postId}")
     public ResponseEntity<RecruitResponse> updateRecruit(@ApiParam(value = "공고ID") @PathVariable(value = "postId") Long postId,
-                                                @RequestBody RecruitUpdateRequest recruitUpdateRequest){
+                                                @RequestBody @Valid RecruitUpdateRequest recruitUpdateRequest){
         return ResponseEntity.ok().build();
     }
 

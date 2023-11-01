@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
@@ -30,14 +32,14 @@ public class CompanyController {
     @ApiOperation("기업 등록")
     @PostMapping("/{userId}")
     public ResponseEntity<CompanyResponse> createCompany(@PathVariable Long userId,
-                                                         @RequestBody CompanyCreateRequest companyCreateRequest){
+                                                         @RequestBody @Valid CompanyCreateRequest companyCreateRequest){
         return ResponseEntity.ok().build();
     }
 
     @ApiOperation("기업 수정")
     @PutMapping("/{companyId}")
     public ResponseEntity<CompanyResponse> updateCompany(@PathVariable Long companyId,
-                                                         @RequestBody CompanyUpdateRequest companyCreateRequest){
+                                                         @RequestBody @Valid CompanyUpdateRequest companyCreateRequest){
         return ResponseEntity.ok().build();
     }
 

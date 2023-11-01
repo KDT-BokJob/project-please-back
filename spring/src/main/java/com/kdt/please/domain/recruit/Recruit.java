@@ -28,9 +28,7 @@ public class Recruit extends BaseEntity {
     @JoinColumn(name = "company_id")
     private Company company;
 
-    @OneToOne
-    @JoinColumn(name = "job_code")
-    private JobCode job_code;
+    private String job_code;
 
     private String title;
 
