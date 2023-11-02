@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Entity
 public class Career {
     @Id @GeneratedValue
-    private Long id;
+    private Long careerId;
 
     @ManyToOne
     @JoinColumn(name = "resume_id")

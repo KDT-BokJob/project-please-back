@@ -18,7 +18,7 @@ import javax.persistence.*;
 public class Apply {
 
     @Id @GeneratedValue
-    private Long id;
+    private Long applyId;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

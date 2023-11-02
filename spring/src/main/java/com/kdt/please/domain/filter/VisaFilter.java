@@ -11,13 +11,4 @@ import javax.persistence.OneToOne;
 public class VisaFilter {
     @EmbeddedId
     private VisaFilterId id;
-
-    @OneToOne
-    @MapsId("jobCode")
-    private NameFilter nameFilter;
-
-    @OneToOne
-    @MapsId("visa")
-    private Visa visa;
-
 }

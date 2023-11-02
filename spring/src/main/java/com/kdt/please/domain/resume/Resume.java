@@ -18,7 +18,7 @@ public class Resume {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long resumeId;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -37,6 +37,8 @@ public class Resume {
     private String coverLetter;
 
     private String degree;
+
+    private LocalDate birthdate;
 
     private boolean isExperienced;
 

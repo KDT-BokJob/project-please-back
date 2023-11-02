@@ -6,10 +6,11 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum UserRole {
-    ROLE_USER("ROLE_USER"),
-    ROLE_RECRUITER("ROLE_RECRUITER");
+    USER("ROLE_USER", "회원"),
+    RECRUITER("ROLE_RECRUITER", "구인자");
 
     private final String role;
+    private final String title;
 
 
 }
