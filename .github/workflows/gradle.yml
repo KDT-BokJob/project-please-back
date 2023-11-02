@@ -47,7 +47,6 @@ jobs:
         cd spring
         chmod +x ./gradlew
         ./gradlew clean build -x test
-        
 
     ## 웹 이미지 빌드 및 도커허브에 push
     - name: web docker build and push
