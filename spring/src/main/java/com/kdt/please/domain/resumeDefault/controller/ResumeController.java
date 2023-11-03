@@ -1,8 +1,8 @@
-package com.kdt.please.domain.resume.controller;
+package com.kdt.please.domain.resumeDefault.controller;
 
-import com.kdt.please.domain.resume.service.request.ResumeCreateRequest;
-import com.kdt.please.domain.resume.service.request.ResumeUpdateReq;
-import com.kdt.please.domain.resume.service.response.ResumeResponse;
+import com.kdt.please.domain.resumeDefault.service.request.ResumeCreateRequest;
+import com.kdt.please.domain.resumeDefault.service.request.ResumeUpdateReq;
+import com.kdt.please.domain.resumeDefault.service.response.ResumeResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

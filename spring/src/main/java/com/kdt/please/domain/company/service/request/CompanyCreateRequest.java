@@ -17,6 +17,12 @@ public record CompanyCreateRequest(
         int employeeCount,
         // 외국인 사원 수
         @NotNull
-        int foreignEmployeeCount
+        int foreignEmployeeCount,
+        @NotNull
+        String phone,
+        @NotNull
+        String address,
+        @NotNull
+        boolean isVisaTransform
 ) {
 }

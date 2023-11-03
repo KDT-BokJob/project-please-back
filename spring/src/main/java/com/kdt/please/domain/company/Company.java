@@ -29,4 +29,10 @@ public class Company {
     private int employeeCount;
 
     private int foreignEmployeeCount;
+
+    private String phone;
+
+    private String address;
+
+    private boolean isVisaTransform;
 }
