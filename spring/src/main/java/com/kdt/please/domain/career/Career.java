@@ -1,10 +1,12 @@
 package com.kdt.please.domain.career;
 
 import com.kdt.please.domain.resume.Resume;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@Getter
 @Entity
 public class Career {
     @Id @GeneratedValue

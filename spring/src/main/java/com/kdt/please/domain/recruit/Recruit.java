@@ -8,13 +8,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
-@Builder
+@SuperBuilder
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,13 +29,11 @@ public class Recruit extends BaseEntity {
     @JoinColumn(name = "company_id")
     private Company company;
 
-    private String job_code;
+    private String jobCode;
 
     private String title;
 
     private String content;
-
-    private LocalDate createdAt;
 
     private LocalDate expiredAt;
 

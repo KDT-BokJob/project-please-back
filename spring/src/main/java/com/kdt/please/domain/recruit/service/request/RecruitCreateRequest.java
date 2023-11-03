@@ -12,7 +12,7 @@ public record RecruitCreateRequest(
         Long companyId,
         // 직업코드
         @NotNull
-        String job_code,
+        String jobCode,
         // 제목
         @NotNull
         String title,
@@ -48,7 +48,7 @@ public record RecruitCreateRequest(
 ) {
     public Recruit toEntity(){
         return Recruit.builder()
-                .job_code(job_code)
+                .jobCode(jobCode)
                 .title(title)
                 .content(content)
                 .createdAt(createdAt)
