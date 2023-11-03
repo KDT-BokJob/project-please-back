@@ -26,32 +26,15 @@ public class User {
     @Column(length = 1000)
     private String profileImage;
 
-    private String phone;
-
-    private LocalDate birthdate;
-
-    private String address;
-
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    private String gender;
-
-    private String period;
-
-    private String hexaco;
-
     @Builder
-    public User(String name, String email, String profileImg, String phone, LocalDate birth, String address,
-                UserRole userRole, String gender) {
+    public User(String name, String email, String profileImg, UserRole userRole) {
         this.name = name;
         this.email = email;
         this.profileImage = profileImg;
-        this.phone = phone;
-        this.birthdate = birth;
         this.role = userRole;
-        this.address = address;
-        this.gender = gender;
     }
 
     public User update(String name, String profileImg) {
