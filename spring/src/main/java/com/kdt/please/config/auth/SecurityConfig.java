@@ -20,8 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-//                .antMatchers("/**").hasRole("RECRUITER")
-//                .anyRequest().authenticated()
+                /*.antMatchers("/**").hasRole("USER")
+                .anyRequest().authenticated()*/
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")
