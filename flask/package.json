@@ -12,7 +12,7 @@
   },
   "scripts": {
     "commit": "git add . & git status & cz",
-    "push": "commit & git push"
+    "push": "git add . & cz & git push"
   },
   "config": {
     "commitizen": {
