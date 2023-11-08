@@ -18,5 +18,8 @@
     "commitizen": {
       "path": "cz-customizable"
     }
+  },
+  "dependencies": {
+    "@ngneat/falso": "^7.1.1"
   }
 }
