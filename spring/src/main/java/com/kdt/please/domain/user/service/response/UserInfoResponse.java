@@ -14,4 +14,13 @@ public record UserInfoResponse(
         String profileImage,
         UserRole role
 ) {
+    public static UserInfoResponse toEntity(User user){
+        return UserInfoResponse.builder()
+                .id(user.getUserId())
+                .email(user.getEmail())
+                .name(user.getName())
+                .profileImage(user.getProfileImage())
+                .role(user.getRole())
+                .build();
+    }
 }

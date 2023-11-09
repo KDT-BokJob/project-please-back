@@ -1,5 +1,7 @@
 package com.kdt.please.domain.user.controller;
 
+import com.kdt.please.config.auth.LoginUser;
+import com.kdt.please.config.auth.dto.SessionUser;
 import com.kdt.please.domain.user.User;
 import com.kdt.please.domain.user.UserRole;
 import com.kdt.please.domain.user.repository.UserRepository;
@@ -8,15 +10,17 @@ import com.kdt.please.domain.user.service.request.UserUpdateRequest;
 import com.kdt.please.domain.user.service.response.UserInfoResponse;
 import com.kdt.please.domain.userVisa.dto.UserVisaRequest;
 import com.kdt.please.domain.userVisa.dto.UserVisaUpdateRequest;
+import com.kdt.please.exception.BaseResponseStatus;
+import com.kdt.please.exception.CustomException;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -30,18 +34,34 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @ApiOperation("회원가입 추가정보 입력 (구직자)")
-    @PostMapping("/{userId}")
-    public ResponseEntity<Void> createUserInfo(@PathVariable final Long userId, @RequestBody @Valid UserInfoRequest userInfoRequest){
-        return ResponseEntity.ok().build();
-    }
+    @ApiOperation("ID로 내 정보 조회")
+    @GetMapping("/id/{userId}")
+    public ResponseEntity<UserInfoResponse> getUserById(@PathVariable final Long userId, @LoginUser SessionUser sessionUser){
 
-    @ApiOperation("내 정보 조회")
-    @GetMapping("/{userId}")
-    public ResponseEntity<UserInfoResponse> getUserInfo(@PathVariable final Long userId){
+        /*if(!Objects.equals(userId, sessionUser.getId()))
+            throw new CustomException(BaseResponseStatus.SESSION_INCONSISTENCY);*/
+
         Optional<User> user = userRepository.findByUserId(userId);
 
         return user.map(value -> ResponseEntity.ok(UserInfoResponse.builder()
+                .id(value.getUserId())
+                .email(value.getEmail())
+                .name(value.getName())
+                .profileImage(value.getProfileImage())
+                .role(value.getRole()).build())).orElseThrow(RuntimeException::new);
+    }
+
+    @ApiOperation("Email로 내 정보 조회")
+    @GetMapping("/email/{email}")
+    public ResponseEntity<UserInfoResponse> getUserByEmail(@PathVariable final String email, @LoginUser SessionUser sessionUser){
+
+        /*if(!email.equals(sessionUser.getEmail()))
+            throw new CustomException(BaseResponseStatus.SESSION_INCONSISTENCY);*/
+
+        Optional<User> user = userRepository.findByEmail(email);
+
+        return user.map(value -> ResponseEntity.ok(UserInfoResponse.builder()
+                .id(value.getUserId())
                 .email(value.getEmail())
                 .name(value.getName())
                 .profileImage(value.getProfileImage())
@@ -49,28 +69,27 @@ public class UserController {
     }
 
     @ApiOperation("내 정보 수정")
-    @PutMapping("/{userId}")
-    public ResponseEntity<UserInfoResponse> updateUserInfo(@PathVariable final Long userId, @RequestBody UserUpdateRequest userUpdateRequest){
-        Optional<User> loginUser = userRepository.findByUserId(userId);
+    @PutMapping("/email/{email}")
+    public ResponseEntity<UserInfoResponse> updateUserInfo(@PathVariable final String email,
+                                                           @RequestBody UserUpdateRequest userUpdateRequest,
+                                                           @LoginUser SessionUser loginUser){
+        /*if(email.equals(loginUser.getEmail()))
+            throw new CustomException(BaseResponseStatus.SESSION_INCONSISTENCY);*/
 
-        if(loginUser.isEmpty())
-            throw new RuntimeException();
+        Optional<User> user = userRepository.findByEmail(email);
 
-        User user = userRepository.save(User.builder()
-                .userId(userId)
-                .email(loginUser.get().getEmail())
+        if(user.isEmpty())
+            throw new CustomException(BaseResponseStatus.NULLPOINTER_EXCEPTION);
+
+        User userTemp = userRepository.save(User.builder()
+                .userId(user.get().getUserId())
+                .email(user.get().getEmail())
                 .name(userUpdateRequest.name())
                 .profileImage(userUpdateRequest.profileImage())
-                .role(loginUser.get().getRole()).build());
+                .role(user.get().getRole()).build());
 
         return ResponseEntity.ok(
-                UserInfoResponse.builder()
-                        .id(user.getUserId())
-                        .name(user.getName())
-                        .email(user.getEmail())
-                        .profileImage(user.getProfileImage())
-                        .role(user.getRole())
-                        .build()
+                UserInfoResponse.toEntity(userTemp)
         );
     }
 
