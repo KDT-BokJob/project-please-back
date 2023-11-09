@@ -21,10 +21,9 @@ public class RecruitController {
     private final RecruitService recruitService;
 
     @ApiOperation("공고 등록")
-    @PostMapping("/{companyId}")
-    public ResponseEntity<RecruitResponse> createRecruit(@ApiParam(value = "기업 ID") @PathVariable Long companyId,
-                                              @RequestBody @Valid RecruitCreateRequest recruitCreateRequest){
-        return ResponseEntity.ok().build();
+    @PostMapping("")
+    public ResponseEntity<Long> createRecruit(@RequestBody @Valid RecruitCreateRequest recruitCreateRequest){
+        return ResponseEntity.ok(recruitService.createPost(recruitCreateRequest));
     }
 
     @ApiOperation("공고 수정")

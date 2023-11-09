@@ -1,9 +1,9 @@
 package com.kdt.please.domain.recruit.service;
 
-import com.kdt.please.domain.company.Company;
 import com.kdt.please.domain.company.repository.CompanyRepository;
 import com.kdt.please.domain.recruit.Recruit;
 import com.kdt.please.domain.recruit.repository.RecruitRepository;
+import com.kdt.please.domain.recruit.service.request.RecruitCreateRequest;
 import com.kdt.please.domain.recruit.service.response.RecruitResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +22,12 @@ public class RecruitService {
 
     private final RecruitRepository recruitRepository;
     private final CompanyRepository companyRepository;
+
+    public Long createPost(RecruitCreateRequest recruitCreateRequest){
+        Recruit recruit = recruitCreateRequest.toEntity();
+        recruit.setCompany(companyRepository.findById(recruitCreateRequest.companyId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 기업이 존재하지 않습니다.")));
+        return recruitRepository.save(recruit).getRecruitId();
+    }
 
     public RecruitResponse getPost(Long postId){
         Recruit recruit = recruitRepository.findById(postId)

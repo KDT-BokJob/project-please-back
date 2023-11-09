@@ -4,10 +4,7 @@ import com.kdt.please.domain.company.Company;
 import com.kdt.please.domain.filter.JobCode;
 import com.kdt.please.domain.user.User;
 import com.kdt.please.global.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
@@ -15,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 @SuperBuilder
 @Entity
 @AllArgsConstructor
@@ -22,7 +20,7 @@ import java.time.LocalDateTime;
 public class Recruit extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long recruitId;
 
     @ManyToOne

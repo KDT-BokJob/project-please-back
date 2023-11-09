@@ -1,6 +1,7 @@
 package com.kdt.please.domain.recruit.service.request;
 
 import com.kdt.please.domain.recruit.Recruit;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -19,10 +20,8 @@ public record RecruitCreateRequest(
         // 내용
         @NotNull
         String content,
-        // 작성일
-        LocalDate createdAt,
-        // 마감일
         @NotNull
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
         LocalDate expiredAt,
         // 급여
         @NotNull
@@ -51,7 +50,6 @@ public record RecruitCreateRequest(
                 .jobCode(jobCode)
                 .title(title)
                 .content(content)
-                .createdAt(createdAt)
                 .expiredAt(expiredAt)
                 .salary(salary)
                 .workType(workType)
