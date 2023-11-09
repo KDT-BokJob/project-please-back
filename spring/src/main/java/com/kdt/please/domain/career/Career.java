@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Getter
 @Entity
 public class Career {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long careerId;
 
     @ManyToOne
