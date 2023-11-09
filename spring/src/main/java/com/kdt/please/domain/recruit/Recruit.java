@@ -49,4 +49,20 @@ public class Recruit extends BaseEntity {
 
     private int workEndHour;
 
+
+    public  void changeRecruit(Recruit recruit) {
+        this.recruitId = recruit.getRecruitId();
+        this.jobCode = recruit.getJobCode();
+        this.title = recruit.getTitle();
+        this.content = recruit.getContent();
+        this.expiredAt = recruit.getExpiredAt();
+        this.salary = recruit.getSalary();
+        this.workType = recruit.getWorkType();
+        this.workLocation = recruit.getWorkLocation();
+        this.workPeriod = recruit.getWorkPeriod();
+        this.workDaysWeek = recruit.getWorkDaysWeek();
+        this.workStartHour = recruit.getWorkStartHour();
+        this.workEndHour = recruit.getWorkEndHour();
+    }
+
 }

@@ -20,29 +20,30 @@ import java.time.LocalDateTime;
 public class RecruitController {
     private final RecruitService recruitService;
 
-    @ApiOperation("공고 등록")
+    @ApiOperation("[완료] 공고 등록")
     @PostMapping("")
     public ResponseEntity<Long> createRecruit(@RequestBody @Valid RecruitCreateRequest recruitCreateRequest){
-        return ResponseEntity.ok(recruitService.createPost(recruitCreateRequest));
+        return ResponseEntity.ok(recruitService.createRecruit(recruitCreateRequest));
     }
 
     @ApiOperation("공고 수정")
     @PutMapping("/{recruitId}")
     public ResponseEntity<RecruitResponse> updateRecruit(@ApiParam(value = "공고 ID") @PathVariable Long recruitId,
                                                 @RequestBody @Valid RecruitUpdateRequest recruitUpdateRequest){
-        return ResponseEntity.ok().build();
+        RecruitResponse recruitResponse = recruitService.updateRecruit(recruitId, recruitUpdateRequest);
+        return ResponseEntity.ok(recruitResponse);
     }
 
-    @ApiOperation("* 공고 조회")
+    @ApiOperation("[완료] 공고 조회")
     @GetMapping("/{recruitId}")
     public ResponseEntity<RecruitResponse> getRecruit(@ApiParam(value = "공고 ID") @PathVariable Long recruitId){
-        return ResponseEntity.ok(recruitService.getPost(recruitId));
+        return ResponseEntity.ok(recruitService.getRecruit(recruitId));
     }
 
-    @ApiOperation("공고 삭제")
+    @ApiOperation("[완료] 공고 삭제")
     @DeleteMapping("/{recruitId}")
-    public ResponseEntity<String> deleteRecruit(@ApiParam(value = "공고 ID") @PathVariable Long recruitId){
-        recruitService.deletePost(recruitId);
+    public ResponseEntity<Void> deleteRecruit(@ApiParam(value = "공고 ID") @PathVariable Long recruitId){
+        recruitService.deleteRecruit(recruitId);
         return ResponseEntity.ok().build();
     }
 
