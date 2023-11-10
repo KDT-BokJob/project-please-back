@@ -1,10 +1,9 @@
-package com.kdt.please.domain.userVisa.dto;
+package com.kdt.please.domain.userVisa.service.request;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public record UserVisaUpdateRequest(
+public record UserVisaRequest(
         @NotNull
         String visa,
         @NotNull

@@ -1,5 +1,6 @@
 package com.kdt.please.domain.user.service.response;
 
+import com.kdt.please.domain.user.User;
 import com.kdt.please.domain.user.UserRole;
 import lombok.Builder;
 
@@ -11,12 +12,15 @@ public record UserInfoResponse(
         String email,
         String name,
         String profileImage,
-        String phone,
-        LocalDate birthdate,
-        String address,
-        UserRole role,
-        String gender,
-        int period,
-        String hexaco
+        UserRole role
 ) {
+    public static UserInfoResponse toEntity(User user){
+        return UserInfoResponse.builder()
+                .id(user.getUserId())
+                .email(user.getEmail())
+                .name(user.getName())
+                .profileImage(user.getProfileImage())
+                .role(user.getRole())
+                .build();
+    }
 }
