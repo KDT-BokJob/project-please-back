@@ -1,4 +1,4 @@
-package com.kdt.please.domain.resume.service.response;
+package com.kdt.please.domain.resumeDefault.service.response;
 
 import lombok.Builder;
 

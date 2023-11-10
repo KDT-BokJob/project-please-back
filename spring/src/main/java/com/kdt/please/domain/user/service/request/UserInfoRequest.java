@@ -10,15 +10,10 @@ import java.time.LocalDate;
 public record UserInfoRequest(
         @NotNull
         String name,
+
         @NotNull
-        String phone,
-        @NotNull
-        LocalDate birthdate,
-        @NotNull
-        String address,
-        @NotNull
-        String gender,
-        @NotNull
-        int period
+        String email,
+
+        String profileImage
 ) {
 }

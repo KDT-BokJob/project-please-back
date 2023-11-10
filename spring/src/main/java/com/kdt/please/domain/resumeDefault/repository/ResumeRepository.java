@@ -1,4 +1,4 @@
-package com.kdt.please.domain.resume.repository;
+package com.kdt.please.domain.resumeDefault.repository;
 
 import com.kdt.please.domain.recruit.Recruit;
 import org.springframework.data.jpa.repository.JpaRepository;
