@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b1ae58b6-74fa-4f5d-a242-2b8b6e6d774b" name="변경" comment="✨ Feat : 유저 권한 Recruiter 변경 기능 추가&#10;UserId 값으로 권한 변경&#10;+ 기존 작성 User API 리팩토링" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/spring">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "git-widget-placeholder": "feat/userApi",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="✨ Feat : 유저 권한 Recruiter 변경 기능 추가&#10;UserId 값으로 권한 변경&#10;+ 기존 작성 User API 리팩토링" />
+    <option name="LAST_COMMIT_MESSAGE" value="✨ Feat : 유저 권한 Recruiter 변경 기능 추가&#10;UserId 값으로 권한 변경&#10;+ 기존 작성 User API 리팩토링" />
+  </component>
+</project>
