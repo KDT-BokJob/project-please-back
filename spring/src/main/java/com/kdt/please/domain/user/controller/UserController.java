@@ -2,7 +2,6 @@ package com.kdt.please.domain.user.controller;
 
 import com.kdt.please.config.auth.LoginUser;
 import com.kdt.please.config.auth.dto.SessionUser;
-import com.kdt.please.domain.user.UserRole;
 import com.kdt.please.domain.user.service.UserService;
 import com.kdt.please.domain.user.service.request.UserUpdateRequest;
 import com.kdt.please.domain.user.service.response.UserInfoResponse;
@@ -16,8 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -92,21 +89,6 @@ public class UserController {
         );
     }
 
-
-    /*@ApiOperation("공고에 지원한 지원자 리스트 조회")
-    @GetMapping("/recruits/{recruitId}")
-    public ResponseEntity<List<UserInfoResponse>> getAppliedUserList(@PathVariable final Long recruitId){
-        ArrayList<UserInfoResponse> userList = new ArrayList<>();
-        userList.add(UserInfoResponse.builder()
-                .id(1L)
-                .email("d@d")
-                .name("leejoohee")
-                .role(UserRole.USER)
-                .profileImage("http://dfdfsdf")
-                .build());
-        return ResponseEntity.ok(userList);
-    }
-*/
     @ApiOperation("내 비자 정보 등록")
     @PostMapping("/{userId}/visa")
     public ResponseEntity<UserVisaInfoResponse> createMyVisa(@ApiParam(value = "유저 ID") @PathVariable final Long userId,
@@ -141,4 +123,18 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+    /*@ApiOperation("공고에 지원한 지원자 리스트 조회")
+    @GetMapping("/recruits/{recruitId}")
+    public ResponseEntity<List<UserInfoResponse>> getAppliedUserList(@PathVariable final Long recruitId){
+        ArrayList<UserInfoResponse> userList = new ArrayList<>();
+        userList.add(UserInfoResponse.builder()
+                .id(1L)
+                .email("d@d")
+                .name("leejoohee")
+                .role(UserRole.USER)
+                .profileImage("http://dfdfsdf")
+                .build());
+        return ResponseEntity.ok(userList);
+    }
+*/
 }

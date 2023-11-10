@@ -112,15 +112,6 @@ public class UserService {
         ).orElseThrow(() -> new CustomException(BaseResponseStatus.DATA_NOT_FOUND));
     }
 
-    // 유저 비자에 해당 하는 비자 정보 조회
-    public VisaInfoResponse getVisaInfo(String visa){
-        return visaRepository.findById(visa).map(value -> VisaInfoResponse.builder()
-                .visa(value.getVisa())
-                .validityPeriod(value.getValidityPeriod())
-                .build()
-        ).orElseThrow(() -> new CustomException(BaseResponseStatus.DATA_NOT_FOUND));
-    }
-
     // 유저 비자 정보 등록
     @Transactional
     public UserVisaInfoResponse createUserVisa(Long userId, UserVisaRequest request){
@@ -159,5 +150,14 @@ public class UserService {
     @Transactional
     public void deleteUserVisaInfo(Long userId){
         userVisaRepository.deleteByUser_UserId(userId);
+    }
+
+    // 유저 비자에 해당 하는 비자 정보 조회
+    public VisaInfoResponse getVisaInfo(String visa){
+        return visaRepository.findById(visa).map(value -> VisaInfoResponse.builder()
+                .visa(value.getVisa())
+                .validityPeriod(value.getValidityPeriod())
+                .build()
+        ).orElseThrow(() -> new CustomException(BaseResponseStatus.DATA_NOT_FOUND));
     }
 }
