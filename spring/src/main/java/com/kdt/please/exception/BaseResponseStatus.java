@@ -17,6 +17,7 @@ public enum BaseResponseStatus {
     DATABASE_ERROR(false, HttpStatus.INTERNAL_SERVER_ERROR, "데이터베이스 연결에 실패하였습니다."),
     SERVER_ERROR(false, HttpStatus.INTERNAL_SERVER_ERROR, "서버와의 연결에 실패하였습니다."),
     MODIFY_FAIL_USER(false, HttpStatus.INTERNAL_SERVER_ERROR, "유저 정보 수정 실패"),
+    MODIFY_FAIL_USERVISA(false, HttpStatus.INTERNAL_SERVER_ERROR, "유저 비자 정보 수정 실패"),
     DELETE_FAIL_USER(false, HttpStatus.INTERNAL_SERVER_ERROR, "유저 정보 삭제 실패");
 
     private final boolean isSuccess;
