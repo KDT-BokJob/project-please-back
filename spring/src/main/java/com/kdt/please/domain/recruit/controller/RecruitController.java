@@ -4,15 +4,17 @@ import com.kdt.please.domain.recruit.service.RecruitService;
 import com.kdt.please.domain.recruit.service.request.RecruitCreateRequest;
 import com.kdt.please.domain.recruit.service.request.RecruitUpdateRequest;
 import com.kdt.please.domain.recruit.service.response.RecruitResponse;
+import com.kdt.please.domain.recruit.service.response.RecruitSimpleResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -20,7 +22,7 @@ import java.time.LocalDateTime;
 public class RecruitController {
     private final RecruitService recruitService;
 
-    @ApiOperation("[완료] 공고 등록")
+    @ApiOperation("공고 등록")
     @PostMapping("")
     public ResponseEntity<Long> createRecruit(@RequestBody @Valid RecruitCreateRequest recruitCreateRequest){
         return ResponseEntity.ok(recruitService.createRecruit(recruitCreateRequest));
@@ -29,18 +31,18 @@ public class RecruitController {
     @ApiOperation("공고 수정")
     @PutMapping("/{recruitId}")
     public ResponseEntity<RecruitResponse> updateRecruit(@ApiParam(value = "공고 ID") @PathVariable Long recruitId,
-                                                @RequestBody @Valid RecruitUpdateRequest recruitUpdateRequest){
+                                                         @RequestBody @Valid RecruitUpdateRequest recruitUpdateRequest){
         RecruitResponse recruitResponse = recruitService.updateRecruit(recruitId, recruitUpdateRequest);
         return ResponseEntity.ok(recruitResponse);
     }
 
-    @ApiOperation("[완료] 공고 조회")
+    @ApiOperation("공고 조회")
     @GetMapping("/{recruitId}")
     public ResponseEntity<RecruitResponse> getRecruit(@ApiParam(value = "공고 ID") @PathVariable Long recruitId){
         return ResponseEntity.ok(recruitService.getRecruit(recruitId));
     }
 
-    @ApiOperation("[완료] 공고 삭제")
+    @ApiOperation("공고 삭제")
     @DeleteMapping("/{recruitId}")
     public ResponseEntity<Void> deleteRecruit(@ApiParam(value = "공고 ID") @PathVariable Long recruitId){
         recruitService.deleteRecruit(recruitId);
@@ -54,9 +56,10 @@ public class RecruitController {
     }
 
     @ApiOperation("전체 공고 목록 조회")
-    @GetMapping("/list/all")
-    public ResponseEntity<RecruitResponse[]> getRecruitListAll(){
-        return ResponseEntity.ok().build();
+    @GetMapping("/list")
+    public ResponseEntity<List<RecruitSimpleResponse>> getRecruitListAll(@RequestParam("page") Integer page){
+        PageRequest pageRequest = PageRequest.of(page, 10);
+        return ResponseEntity.ok(recruitService.getRecruitList(pageRequest));
     }
 
     @ApiOperation("공고 키워드 조회")
@@ -65,11 +68,11 @@ public class RecruitController {
         return ResponseEntity.ok().build();
     }
 
-    @ApiOperation("비자로 공고 조회")
-    @GetMapping("/visa/{visa}")
-    public ResponseEntity<RecruitResponse[]> getRecruitByJobCode(@ApiParam(value = "비자") @PathVariable String visa){
-        // 비자로 직업코드들을 조회하고
-        // 해당 직업코드들의 공고 목록을 조회
-        return ResponseEntity.ok().build();
-    }
+//    @ApiOperation("비자로 공고 조회")
+//    @GetMapping("/visa/{visa}")
+//    public ResponseEntity<RecruitResponse[]> getRecruitByJobCode(@ApiParam(value = "비자") @PathVariable String visa){
+//        // 비자로 직업코드들을 조회하고
+//        // 해당 직업코드들의 공고 목록을 조회
+//        return ResponseEntity.ok().build();
+//    }
 }

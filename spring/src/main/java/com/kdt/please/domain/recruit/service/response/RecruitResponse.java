@@ -5,7 +5,7 @@ import com.kdt.please.domain.recruit.Recruit;
 import lombok.Builder;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 public record RecruitResponse(
@@ -36,9 +36,10 @@ public record RecruitResponse(
         // 근무 기간
         int workPeriod,
         // 주중 근무 일수
-        int workDaysWeek
+        int workDaysWeek,
+        List<String> visa
 ) {
-    public static RecruitResponse from(Recruit recruit){
+    public static RecruitResponse from(Recruit recruit, List<String> visaList){
         return RecruitResponse.builder()
                 .recruitId(recruit.getRecruitId())
                 .companyResponse(CompanyResponse.from(recruit.getCompany()))
@@ -54,6 +55,7 @@ public record RecruitResponse(
                 .workEndHour(recruit.getWorkEndHour())
                 .workPeriod(recruit.getWorkPeriod())
                 .workDaysWeek(recruit.getWorkDaysWeek())
+                .visa(visaList)
                 .build();
 
     }
