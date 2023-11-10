@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33174c0e-4728-40d1-84a6-2f51ac6870f2" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/project-please-back.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="60c0a217-e03d-4364-9806-22036214e694" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring/src/main/resources/application-oauth.yml" beforeDir="false" afterPath="$PROJECT_DIR$/spring/src/main/resources/application-oauth.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/spring/src/main/resources/application.yml" afterDir="false" />
@@ -52,15 +49,19 @@
   "customColor": "",
   "associatedIndex": -1
 }]]></component>
-  <component name="ProjectId" id="2XyFVHIMlapfMIpq1vf1wtvRaRa" />
+  <component name="ProjectId" id="2XyHmVCNYTJhAmKYpRTJm0E4cYh" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "feat/userApi-patch",
     "last_opened_file_path": "C:/Users/USER/git/project-please-back",
@@ -88,16 +89,20 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="디폴트 작업">
-      <changelist id="33174c0e-4728-40d1-84a6-2f51ac6870f2" name="변경" comment="" />
-      <created>1699593434929</created>
+      <changelist id="60c0a217-e03d-4364-9806-22036214e694" name="변경" comment="" />
+      <created>1699594558423</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1699593434929</updated>
-      <workItem from="1699593435929" duration="573000" />
+      <updated>1699594558423</updated>
+      <workItem from="1699594559451" duration="455000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
   </component>
 </project>
