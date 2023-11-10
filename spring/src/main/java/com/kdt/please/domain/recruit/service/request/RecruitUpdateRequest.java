@@ -1,16 +1,20 @@
 package com.kdt.please.domain.recruit.service.request;
 
+import com.kdt.please.domain.recruit.Recruit;
+import lombok.Builder;
+
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Builder
 public record RecruitUpdateRequest(
         // 기업 ID
         @NotNull
         Long companyId,
         // 직업코드
         @NotNull
-        String job_code,
+        String jobCode,
         // 제목
         @NotNull
         String title,
@@ -44,4 +48,19 @@ public record RecruitUpdateRequest(
         int workDaysWeek
 
 ) {
+        public Recruit toEntity(){
+                return Recruit.builder()
+                        .jobCode(jobCode)
+                        .title(title)
+                        .content(content)
+                        .expiredAt(expiredAt)
+                        .salary(salary)
+                        .workType(workType)
+                        .workLocation(workLocation)
+                        .workDaysWeek(workDaysWeek)
+                        .workPeriod(workPeriod)
+                        .workStartHour(workStartHour)
+                        .workEndHour(workEndHour)
+                        .build();
+        }
 }

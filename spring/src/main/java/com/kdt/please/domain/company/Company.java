@@ -1,14 +1,12 @@
 package com.kdt.please.domain.company;
 
 import com.kdt.please.domain.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
+@Setter
 @Builder
 @Entity
 @AllArgsConstructor
