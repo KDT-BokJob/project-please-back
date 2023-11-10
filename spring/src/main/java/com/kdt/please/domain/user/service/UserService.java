@@ -154,4 +154,10 @@ public class UserService {
                 )
         )).orElseThrow(() -> new CustomException(BaseResponseStatus.MODIFY_FAIL_USERVISA));
     }
+
+    // 유저 비자 정보 삭제
+    @Transactional
+    public void deleteUserVisaInfo(Long userId){
+        userVisaRepository.deleteByUser_UserId(userId);
+    }
 }

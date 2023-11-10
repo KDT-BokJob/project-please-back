@@ -93,7 +93,7 @@ public class UserController {
     }
 
 
-    @ApiOperation("공고에 지원한 지원자 리스트 조회")
+    /*@ApiOperation("공고에 지원한 지원자 리스트 조회")
     @GetMapping("/recruits/{recruitId}")
     public ResponseEntity<List<UserInfoResponse>> getAppliedUserList(@PathVariable final Long recruitId){
         ArrayList<UserInfoResponse> userList = new ArrayList<>();
@@ -106,7 +106,7 @@ public class UserController {
                 .build());
         return ResponseEntity.ok(userList);
     }
-
+*/
     @ApiOperation("내 비자 정보 등록")
     @PostMapping("/{userId}/visa")
     public ResponseEntity<UserVisaInfoResponse> createMyVisa(@ApiParam(value = "유저 ID") @PathVariable final Long userId,
@@ -132,6 +132,13 @@ public class UserController {
         return ResponseEntity.ok(
             userService.getUserVisaInfo(userId)
         );
+    }
+
+    @ApiOperation("내 비자 정보 삭제")
+    @DeleteMapping("/{userId}/visa")
+    public ResponseEntity<Void> deleteMyVisa(@ApiParam(value = "유저 ID") @PathVariable final Long userId){
+        userService.deleteUserVisaInfo(userId);
+        return ResponseEntity.ok().build();
     }
 
 }
