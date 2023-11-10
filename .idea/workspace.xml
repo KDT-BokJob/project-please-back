@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b1ae58b6-74fa-4f5d-a242-2b8b6e6d774b" name="변경" comment="✨ Feat : 유저 권한 Recruiter 변경 기능 추가&#10;UserId 값으로 권한 변경&#10;+ 기존 작성 User API 리팩토링" />
+    <list default="true" id="33174c0e-4728-40d1-84a6-2f51ac6870f2" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/project-please-back.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring/src/main/resources/application-oauth.yml" beforeDir="false" afterPath="$PROJECT_DIR$/spring/src/main/resources/application-oauth.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/spring/src/main/resources/application.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,18 +37,67 @@
       </state>
     </system>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": -1
+}]]></component>
+  <component name="ProjectId" id="2XyFVHIMlapfMIpq1vf1wtvRaRa" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "feat/userApi",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "feat/userApi-patch",
+    "last_opened_file_path": "C:/Users/USER/git/project-please-back",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="PleaseApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="please.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kdt.please.PleaseApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="33174c0e-4728-40d1-84a6-2f51ac6870f2" name="변경" comment="" />
+      <created>1699593434929</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1699593434929</updated>
+      <workItem from="1699593435929" duration="573000" />
+    </task>
     <servers />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="✨ Feat : 유저 권한 Recruiter 변경 기능 추가&#10;UserId 값으로 권한 변경&#10;+ 기존 작성 User API 리팩토링" />
-    <option name="LAST_COMMIT_MESSAGE" value="✨ Feat : 유저 권한 Recruiter 변경 기능 추가&#10;UserId 값으로 권한 변경&#10;+ 기존 작성 User API 리팩토링" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
