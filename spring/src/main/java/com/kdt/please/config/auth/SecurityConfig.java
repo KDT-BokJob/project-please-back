@@ -19,15 +19,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-//                .antMatchers("/**").hasRole("RECRUITER")
-//                .anyRequest().authenticated()
+                .antMatchers("/", "/login").permitAll()
+                /*.antMatchers("/oauth2/authorization/**","/login/oauth2/code/**").permitAll()
+                .antMatchers("/**").hasRole("USER")
+                .anyRequest().authenticated()*/
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")
                 .and()
-                .oauth2Login()
-                .userInfoEndpoint()
-                .userService(customOAuth2UserService);
+                .oauth2Login(oauth2Login -> oauth2Login
+                        .loginPage("/login")
+                        .redirectionEndpoint(redirectionEndpointConfig -> redirectionEndpointConfig
+                                .baseUri("/login/oauth2/code/*"))
+                        .userInfoEndpoint(userInfoEndpointConfig -> userInfoEndpointConfig
+                                .userService(customOAuth2UserService))
+                        .defaultSuccessUrl("http://localhost:8080/"));
     }
 }
