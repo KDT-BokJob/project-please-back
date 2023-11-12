@@ -27,7 +27,7 @@ public class CompanyController {
     }
 
     @ApiOperation("기업 등록")
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Long> createCompany(@RequestBody @Valid CompanyCreateRequest companyCreateRequest){
         // sessionUser가 구인자인지 확인해야 함
         return ResponseEntity.ok(companyService.createCompany(companyCreateRequest));
@@ -37,8 +37,7 @@ public class CompanyController {
     @PutMapping("/{companyId}")
     public ResponseEntity<CompanyResponse> updateCompany(@PathVariable Long companyId,
                                                          @RequestBody @Valid CompanyUpdateRequest companyCreateRequest){
-
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(companyService.updateCompany(companyId, companyCreateRequest));
     }
 
     @ApiOperation("기업 삭제")
