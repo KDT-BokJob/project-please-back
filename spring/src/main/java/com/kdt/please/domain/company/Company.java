@@ -1,9 +1,12 @@
 package com.kdt.please.domain.company;
 
+import com.kdt.please.domain.company.service.request.CompanyUpdateRequest;
+import com.kdt.please.domain.recruit.Recruit;
 import com.kdt.please.domain.user.User;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,7 +16,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Company {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long companyId;
 
     @OneToOne
@@ -33,4 +36,17 @@ public class Company {
     private String address;
 
     private boolean isVisaTransform;
+
+    @OneToMany(mappedBy = "company", cascade = CascadeType.REMOVE)
+    private List<Recruit> recruits;
+
+    public void changeCompany(CompanyUpdateRequest req){
+        this.businessCode = req.businessCode();
+        this.name = req.name();
+        this.employeeCount = req.employeeCount();
+        this.foreignEmployeeCount = req.foreignEmployeeCount();
+        this.phone = req.phone();
+        this.address = req.address();
+        this.isVisaTransform = req.isVisaTransform();
+    }
 }
