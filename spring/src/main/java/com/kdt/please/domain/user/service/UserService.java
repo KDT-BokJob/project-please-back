@@ -12,15 +12,13 @@ import com.kdt.please.domain.userVisa.service.request.UserVisaUpdateRequest;
 import com.kdt.please.domain.userVisa.service.response.UserVisaInfoResponse;
 import com.kdt.please.domain.visa.Visa;
 import com.kdt.please.domain.visa.repository.VisaRepository;
+import com.kdt.please.domain.visa.request.VisaRequest;
 import com.kdt.please.domain.visa.response.VisaInfoResponse;
 import com.kdt.please.exception.BaseResponseStatus;
 import com.kdt.please.exception.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDate;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -159,5 +157,34 @@ public class UserService {
                 .validityPeriod(value.getValidityPeriod())
                 .build()
         ).orElseThrow(() -> new CustomException(BaseResponseStatus.DATA_NOT_FOUND));
+    }
+
+    // 비자 CRUD를 API로 쓸 일이 있을까?
+    // 비자 정보 삭제
+    @Transactional
+    public void deleteUserVisaInfo(String visa){
+        visaRepository.deleteById(visa);
+    }
+
+    // 비자 정보 등록 수정
+    @Transactional
+    public VisaInfoResponse updateVisaInfo(VisaRequest request){
+        return visaRepository.findById(request.visa()).map(value -> VisaInfoResponse.toEntity(
+                    visaRepository.save(Visa.builder()
+                            .visa(request.visa())
+                            .validityPeriod(request.validityPeriod())
+                            .build()
+                    )
+                )).orElseThrow(() -> new CustomException(BaseResponseStatus.MODIFY_FAIL_VISA));
+    }
+
+    // 비자 정보 등록 등록
+    @Transactional
+    public VisaInfoResponse createVisaInfo(VisaRequest request){
+        return VisaInfoResponse.toEntity(visaRepository.save(Visa.builder()
+                .visa(request.visa())
+                .validityPeriod(request.validityPeriod())
+                .build()
+        ));
     }
 }

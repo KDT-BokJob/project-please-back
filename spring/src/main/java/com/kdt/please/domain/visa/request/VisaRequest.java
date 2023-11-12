@@ -1,4 +1,12 @@
 package com.kdt.please.domain.visa.request;
 
-public record VisaRequest() {
+import javax.validation.constraints.NotNull;
+
+public record VisaRequest(
+        @NotNull
+        String visa,
+
+        @NotNull
+        Integer validityPeriod
+) {
 }
