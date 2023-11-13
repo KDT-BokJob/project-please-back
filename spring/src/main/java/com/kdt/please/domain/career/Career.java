@@ -19,5 +19,4 @@ public class Career {
     private String responsibility;
     private LocalDate startedAt;
     private LocalDate endedAt;
-    private String detail;
 }

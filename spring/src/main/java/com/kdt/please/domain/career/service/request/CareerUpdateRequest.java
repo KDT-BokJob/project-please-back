@@ -17,8 +17,7 @@ public record CareerUpdateRequest(
         LocalDate hireDate,
         @NotNull
         @DateTimeFormat(pattern = "yyyy-MM-dd")
-        LocalDate endDate,
-        String detail
+        LocalDate endDate
 ) {
 
 }

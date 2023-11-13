@@ -11,14 +11,12 @@ public record CareerInfoResponse(
         String companyName,
         String responsibility,
         LocalDate startedAt,
-        LocalDate endedAt,
-        String detail
+        LocalDate endedAt
 ) {
     public static CareerInfoResponse from(Career career){
         return CareerInfoResponse.builder()
                 .careerId(career.getCareerId())
                 .companyName(career.getCompanyName())
-                .detail(career.getDetail())
                 .responsibility(career.getResponsibility())
                 .startedAt(career.getStartedAt())
                 .endedAt(career.getEndedAt())
