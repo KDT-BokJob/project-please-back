@@ -1,6 +1,6 @@
 package com.kdt.please.domain.career;
 
-import com.kdt.please.domain.resumeDefault.ResumeDefault;
+import com.kdt.please.domain.resume.Resume;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -14,11 +14,10 @@ public class Career {
 
     @ManyToOne
     @JoinColumn(name = "resume_id")
-    private ResumeDefault resume;
-    private String job;
+    private Resume resume;
+    private String companyName;
     private String responsibility;
     private LocalDate startedAt;
     private LocalDate endedAt;
-    private String workPerformance;
     private String detail;
 }

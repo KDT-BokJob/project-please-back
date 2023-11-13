@@ -4,11 +4,12 @@ import io.swagger.annotations.ApiModelProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 
 public record CareerUpdateRequest(
         @NotNull
-        String job,
+        String companyName,
         @NotNull
         String role,
         @NotNull
@@ -17,8 +18,7 @@ public record CareerUpdateRequest(
         @NotNull
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         LocalDate endDate,
-        String workPerformance,
-        String detailInfo
+        String detail
 ) {
 
 }

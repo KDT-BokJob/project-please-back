@@ -1,54 +1,53 @@
-package com.kdt.please.domain.resumeDefault.service.request;
+package com.kdt.please.domain.resume.service.request;
 
-import com.kdt.please.domain.resumeDefault.ResumeDefault;
+import com.kdt.please.domain.resume.Resume;
+import com.kdt.please.domain.user.User;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public record ResumeCreateRequest(
-        @NotNull
+
         String firstName,
 
-        @NotNull
         String lastName,
 
-        @NotNull
         String phone,
 
-        @NotNull
         LocalDate birthdate,
 
-        @NotNull
         String address,
-        @NotNull
+
         String gender,
 
-        @NotNull
         String nationality,
 
-        @NotNull
         String period,
 
-        @NotNull
         String koreanProficiency,
 
-        @NotNull
         String degree,
 
-        @NotNull
         boolean isExperienced,
 
-        @NotNull
         boolean isDisabled,
 
         String coverLetter,
 
-        @NotNull
-        String hexaco
+        String hexaco,
+
+        String hopeJob,
+
+        String tag,
+
+        String resume_file,
+
+        Boolean isCompleted
 
 ) {
-    public ResumeDefault toEntity(){
-        return ResumeDefault.builder()
+    public Resume toEntity(User user){
+        return Resume.builder()
+                .user(user)
                 .firstName(firstName)
                 .lastName(lastName)
                 .phone(phone)
@@ -62,7 +61,10 @@ public record ResumeCreateRequest(
                 .isExperienced(isExperienced)
                 .isDisabled(isDisabled)
                 .coverLetter(coverLetter)
-                .hexaco(hexaco).build();
-
+                .hexaco(hexaco)
+                .hopeJob(hopeJob)
+                .resume_file(resume_file)
+                .isCompleted(isCompleted)
+                .build();
     }
 }
