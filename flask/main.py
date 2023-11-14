@@ -3,7 +3,7 @@ from dotenv import dotenv_values
 from flask import Flask, request, jsonify
 from flask import render_template
 
-from src.Recommendation.main import calc_result, find_similarity
+from src.Recommendation.main import calc_result, find_similarity, recommendation
 
 app = Flask(__name__)
 config = dotenv_values(".flaskenv")
@@ -78,6 +78,15 @@ def get_users(user_id):
     return jsonify(
         {"id": user_id,
          "data": find_similarity(user_id).to_dict()})
+
+
+@app.route('/recommendation/<user_id>', methods=['GET'])
+def get_recommendation_by_user_id(user_id):
+    df = recommendation(user_id, 2)
+
+    return jsonify(
+        {"id": user_id,
+         "data": df.to_dict('records')})
 
 
 if __name__ == '__main__':

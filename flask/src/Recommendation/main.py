@@ -1,5 +1,6 @@
 from pprint import pprint
 
+import numpy as np
 import pandas as pd
 
 from src.HEXACO.calc import reverse, domains_scores
@@ -25,7 +26,7 @@ def recommendation(user_id, max_recommendation=5, similarity_threshold=0.5):
     print(f"{user_id_similarity_dict=}")
 
     df["priority"] = df.apply(lambda x: user_id_similarity_dict.get(x.user_id), axis=1)
-    return df
+    return df[:max_recommendation]
 
 
 pprint(recommendation(4, 2, 0.5))
