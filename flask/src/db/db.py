@@ -1,28 +1,12 @@
-from pprint import pprint
-
 import pandas as pd
 import pymysql.cursors
 
 
 def get_user_df():
-    # Connect to the database
     connection = pymysql.connect(host='localhost', user='root', password='root', database='Please', charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
     with connection:
-        # with connection.cursor() as cursor:
-        #     # Create a new record
-        #     sql = "INSERT INTO `user` (`email`, `password`) VALUES (%s, %s)"
-        #     cursor.execute(sql, ('webmaster@python.org', 'very-secret'))
-        #
-        # # connection is not autocommit by default. So you must commit to save
-        # # your changes.
-        # connection.commit()
-
         with connection.cursor() as cursor:
-            # Read a single record
-            # sql = "SELECT `id`, `password` FROM `users` WHERE `email`=%s"
-            # cursor.execute(sql, ('webmaster@python.org',))
-
             create_user_visa_info = """
             CREATE OR REPLACE VIEW user_visa_info AS
             SELECT
@@ -87,5 +71,31 @@ def get_user_df():
             cursor.execute(create_career_stats)
             cursor.execute(join)
             result = cursor.fetchall()
-            # pprint(result)
+            return pd.DataFrame(result)
+
+
+def get_valid_recruit_id_by_user_ids(user_df):
+    if user_df is None: return None
+    user_ids = ",".join(map(lambda x: str(x), user_df.keys()))
+    print(f"{user_ids=}")
+
+    connection = pymysql.connect(host='localhost', user='root', password='root', database='Please', charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    with connection:
+        with connection.cursor() as cursor:
+            find_gonggo = f"""
+                        SELECT *
+                        FROM (
+                            WITH T2 AS (
+                                SELECT recruit_id, user_id
+                                FROM apply
+                                WHERE user_id IN ({user_ids})
+                            ) 
+                            SELECT T2.user_id, T1.recruit_id, T1.expired_at < now() AS is_expired
+                            FROM recruit AS T1
+                            RIGHT JOIN T2 ON T1.recruit_id = T2.recruit_id
+                        ) AS T WHERE is_expired = FALSE;
+                        """
+            cursor.execute(find_gonggo)
+            result = cursor.fetchall()
             return pd.DataFrame(result)

@@ -3,7 +3,7 @@ from dotenv import dotenv_values
 from flask import Flask, request, jsonify
 from flask import render_template
 
-from src.recommendation.rec import calc_result, find_similarity
+from src.Recommendation.main import calc_result, find_similarity
 
 app = Flask(__name__)
 config = dotenv_values(".flaskenv")
