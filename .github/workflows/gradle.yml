@@ -9,9 +9,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "main", "dev-spring" ]
+    branches: [ "dev-spring" ]
   pull_request:
-    branches: [ "main", "dev-spring" ]
+    branches: [ "dev-spring" ]
 
 permissions:
   contents: read
@@ -40,6 +40,9 @@ jobs:
       env:
         spring.security.oauth2.client.registration.google.client-id: ${{ secrets.GOOGLE_CLIENT_ID }}
         spring.security.oauth2.client.registration.google.client-secret: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+        cloud.aws.s3.bucket: ${{ secrets.AWS_BUCKET_NAME }}
+        cloud.aws.credentials.secret-key: ${{ secrets.AWS_SECRET_KEY }}
+        cloud.aws.credentials.access-key: ${{ secrets.AWS_ACCESS_KEY }}
 
       ## Build Gradle
     - name: Build with Gradle  
