@@ -5,7 +5,7 @@ import lombok.Builder;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 public record RecruitUpdateRequest(
@@ -46,7 +46,9 @@ public record RecruitUpdateRequest(
         // 주중 근무 일수
 
         int workDaysWeek,
-        String gender
+        String salaryType,
+        String gender,
+        List<String> tags
 
 ) {
         public Recruit toEntity(){
@@ -56,6 +58,7 @@ public record RecruitUpdateRequest(
                         .content(content)
                         .expiredAt(expiredAt)
                         .salary(salary)
+                        .salaryType(salaryType)
                         .workType(workType)
                         .workLocation(workLocation)
                         .workDaysWeek(workDaysWeek)

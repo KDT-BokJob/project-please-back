@@ -37,6 +37,8 @@ public class Company {
 
     private boolean isVisaTransform;
 
+    private String image;
+
     @OneToMany(mappedBy = "company", cascade = CascadeType.REMOVE)
     private List<Recruit> recruits;
 

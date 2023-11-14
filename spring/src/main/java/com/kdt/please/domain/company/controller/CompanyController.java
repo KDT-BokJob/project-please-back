@@ -1,6 +1,5 @@
 package com.kdt.please.domain.company.controller;
 
-import com.kdt.please.domain.company.repository.CompanyRepository;
 import com.kdt.please.domain.company.service.CompanyService;
 import com.kdt.please.domain.company.service.request.CompanyCreateRequest;
 import com.kdt.please.domain.company.service.request.CompanyUpdateRequest;
@@ -10,8 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @RequiredArgsConstructor
 @Controller
@@ -28,16 +29,18 @@ public class CompanyController {
 
     @ApiOperation("기업 등록")
     @PostMapping("")
-    public ResponseEntity<Long> createCompany(@RequestBody @Valid CompanyCreateRequest companyCreateRequest){
+    public ResponseEntity<Long> createCompany(@RequestPart(value = "dto") CompanyCreateRequest companyCreateRequest,
+                                              @RequestPart(value = "file", required = false) MultipartFile file) throws IOException {
         // sessionUser가 구인자인지 확인해야 함
-        return ResponseEntity.ok(companyService.createCompany(companyCreateRequest));
+        return ResponseEntity.ok(companyService.createCompany(companyCreateRequest, file));
     }
 
     @ApiOperation("기업 수정")
     @PutMapping("/{companyId}")
     public ResponseEntity<CompanyResponse> updateCompany(@PathVariable Long companyId,
-                                                         @RequestBody @Valid CompanyUpdateRequest companyCreateRequest){
-        return ResponseEntity.ok(companyService.updateCompany(companyId, companyCreateRequest));
+                                                         @RequestPart(value = "dto") CompanyUpdateRequest companyUpdateRequest,
+                                                         @RequestPart(value = "file", required = false) MultipartFile file) throws IOException{
+        return ResponseEntity.ok(companyService.updateCompany(companyId, companyUpdateRequest, file));
     }
 
     @ApiOperation("기업 삭제")
