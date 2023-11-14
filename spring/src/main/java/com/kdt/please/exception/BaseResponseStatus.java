@@ -1,12 +1,9 @@
 package com.kdt.please.exception;
-
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
-
 @Getter
 public enum BaseResponseStatus {
     // httpstatus는 code 대신 HttpsStatus 열거형 쓰는게 더 표준적
-
     SUCCESS(true, HttpStatus.OK, "요청에 성공하였습니다."),
     RESPONSE_ERROR(false, HttpStatus.NOT_FOUND, "값을 불러오는데 실패하였습니다."),
     DATA_NOT_FOUND(false,HttpStatus.INTERNAL_SERVER_ERROR,"존재하지 않는 정보입니다."),
@@ -19,12 +16,12 @@ public enum BaseResponseStatus {
     MODIFY_FAIL_USER(false, HttpStatus.INTERNAL_SERVER_ERROR, "유저 정보 수정 실패"),
     MODIFY_FAIL_USERVISA(false, HttpStatus.INTERNAL_SERVER_ERROR, "유저 비자 정보 수정 실패"),
     MODIFY_FAIL_VISA(false, HttpStatus.INTERNAL_SERVER_ERROR, "비자 정보 수정 실패"),
+    MODIFY_FAIL_APPLY(false, HttpStatus.INTERNAL_SERVER_ERROR, "지원 정보 수정 실패"),
     DELETE_FAIL_USER(false, HttpStatus.INTERNAL_SERVER_ERROR, "유저 정보 삭제 실패");
 
     private final boolean isSuccess;
     private final HttpStatus code;
     private final String message;
-
     private BaseResponseStatus(boolean isSuccess, HttpStatus code, String message) {
         this.isSuccess = isSuccess;
         this.code = code;
