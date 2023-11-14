@@ -9,4 +9,7 @@ import java.util.List;
 public interface VisaFilterRepository extends JpaRepository<VisaFilter, VisaFilterId> {
     @Query("select vf from VisaFilter vf where vf.id.jobCode.jobCode=:jobCode")
     List<VisaFilter> findByVisaFilterIdJobCode(@Param("jobCode") String jobCode);
+
+    @Query("select vf.id.visa.visa from VisaFilter vf where vf.id.jobCode.jobCode in :jobCodes")
+    List<String> findByVisaFilterIdJobCodes(@Param("jobCodes") List<String> jobCodes);
 }

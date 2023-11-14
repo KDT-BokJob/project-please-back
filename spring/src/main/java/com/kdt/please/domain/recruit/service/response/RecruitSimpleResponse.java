@@ -2,24 +2,21 @@ package com.kdt.please.domain.recruit.service.response;
 
 import com.kdt.please.domain.recruit.Recruit;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public record RecruitSimpleResponse(
+        String title,
         String companyName,
-        String jobCode,
+        String jobName,
         Integer salary,
-        String workLocation
+        String workLocation,
+        List<String> visa
 
 ) {
-    public static RecruitSimpleResponse from(Recruit recruit){
-        return new RecruitSimpleResponse(recruit.getCompany().getName(),
-                recruit.getJobCode(), recruit.getSalary(), recruit.getWorkLocation());
+    public static RecruitSimpleResponse from(Recruit recruit, List<String> visaList){
+        return new RecruitSimpleResponse(recruit.getTitle(), recruit.getCompany().getName(),
+                recruit.getJobCode().getJobName(), recruit.getSalary(), recruit.getWorkLocation(), visaList);
     }
 
-    public static List<RecruitSimpleResponse> from(List<Recruit> recruitList){
-        return recruitList.stream().map(RecruitSimpleResponse::from).collect(Collectors.toList());
-    }
 
 }

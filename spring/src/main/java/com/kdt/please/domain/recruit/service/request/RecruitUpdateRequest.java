@@ -14,7 +14,7 @@ public record RecruitUpdateRequest(
         Long companyId,
         // 직업코드
         @NotNull
-        String jobCode,
+        String jobName,
         // 제목
         @NotNull
         String title,
@@ -41,16 +41,17 @@ public record RecruitUpdateRequest(
         // 근무 종료 시간
         @NotNull
         int workEndHour,
-        // 근무 기간
-        int workPeriod,
+        LocalDate workStartDate,
+        LocalDate workEndDate,
         // 주중 근무 일수
-        @NotNull
-        int workDaysWeek
+
+        int workDaysWeek,
+        String gender
 
 ) {
         public Recruit toEntity(){
                 return Recruit.builder()
-                        .jobCode(jobCode)
+                        //  .jobCode(jobCode)
                         .title(title)
                         .content(content)
                         .expiredAt(expiredAt)
@@ -58,9 +59,11 @@ public record RecruitUpdateRequest(
                         .workType(workType)
                         .workLocation(workLocation)
                         .workDaysWeek(workDaysWeek)
-                        .workPeriod(workPeriod)
+                        .workStartDate(workStartDate)
+                        .workEndDate(workEndDate)
                         .workStartHour(workStartHour)
                         .workEndHour(workEndHour)
+                        .gender(gender)
                         .build();
         }
 }

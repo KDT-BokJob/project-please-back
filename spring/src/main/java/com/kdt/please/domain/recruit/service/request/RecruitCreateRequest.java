@@ -1,5 +1,6 @@
 package com.kdt.please.domain.recruit.service.request;
 
+import com.kdt.please.domain.filter.JobCode;
 import com.kdt.please.domain.recruit.Recruit;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,7 +14,7 @@ public record RecruitCreateRequest(
         Long companyId,
         // 직업코드
         @NotNull
-        String jobCode,
+        String jobName,
         // 제목
         @NotNull
         String title,
@@ -35,19 +36,17 @@ public record RecruitCreateRequest(
         // 근무 시작 시간
         @NotNull
         int workStartHour,
-        // 근무 종료 시간
         @NotNull
         int workEndHour,
-        // 근무 기간
-        int workPeriod,
-        // 주중 근무 일수
-        @NotNull
-        int workDaysWeek
+        LocalDate workStartDate,
+        LocalDate workEndDate,
+        int workDaysWeek,
+
+        String gender
 
 ) {
     public Recruit toEntity(){
         return Recruit.builder()
-                .jobCode(jobCode)
                 .title(title)
                 .content(content)
                 .expiredAt(expiredAt)
@@ -55,9 +54,11 @@ public record RecruitCreateRequest(
                 .workType(workType)
                 .workLocation(workLocation)
                 .workDaysWeek(workDaysWeek)
-                .workPeriod(workPeriod)
+                .workStartDate(workStartDate)
+                .workEndDate(workEndDate)
                 .workStartHour(workStartHour)
                 .workEndHour(workEndHour)
+                .gender(gender)
                 .build();
     }
 }

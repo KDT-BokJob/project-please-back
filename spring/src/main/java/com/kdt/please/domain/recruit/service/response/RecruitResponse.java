@@ -14,7 +14,7 @@ public record RecruitResponse(
         // 기업 ID
         CompanyResponse companyResponse,
         // 직업코드
-        String jobCode,
+        String jobName,
         // 제목
         String title,
         // 내용
@@ -34,16 +34,18 @@ public record RecruitResponse(
         // 근무 종료 시간
         int workEndHour,
         // 근무 기간
-        int workPeriod,
+        LocalDate workStartDate,
+        LocalDate workEndDate,
         // 주중 근무 일수
         int workDaysWeek,
+        String gender,
         List<String> visa
 ) {
     public static RecruitResponse from(Recruit recruit, List<String> visaList){
         return RecruitResponse.builder()
                 .recruitId(recruit.getRecruitId())
                 .companyResponse(CompanyResponse.from(recruit.getCompany()))
-                .jobCode(recruit.getJobCode())
+                .jobName(recruit.getJobCode().getJobName())
                 .title(recruit.getTitle())
                 .content(recruit.getContent())
                 .createdAt(recruit.getCreatedAt())
@@ -53,8 +55,10 @@ public record RecruitResponse(
                 .workLocation(recruit.getWorkLocation())
                 .workStartHour(recruit.getWorkStartHour())
                 .workEndHour(recruit.getWorkEndHour())
-                .workPeriod(recruit.getWorkPeriod())
+                .workStartDate(recruit.getWorkStartDate())
+                .workEndDate(recruit.getWorkEndDate())
                 .workDaysWeek(recruit.getWorkDaysWeek())
+                .gender(recruit.getGender())
                 .visa(visaList)
                 .build();
 
