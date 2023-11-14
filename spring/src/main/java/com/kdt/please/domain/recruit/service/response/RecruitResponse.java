@@ -39,9 +39,10 @@ public record RecruitResponse(
         // 주중 근무 일수
         int workDaysWeek,
         String gender,
-        List<String> visa
+        List<String> visa,
+        List<String> tags
 ) {
-    public static RecruitResponse from(Recruit recruit, List<String> visaList){
+    public static RecruitResponse from(Recruit recruit, List<String> visaList, List<String> tagList){
         return RecruitResponse.builder()
                 .recruitId(recruit.getRecruitId())
                 .companyResponse(CompanyResponse.from(recruit.getCompany()))
@@ -60,6 +61,7 @@ public record RecruitResponse(
                 .workDaysWeek(recruit.getWorkDaysWeek())
                 .gender(recruit.getGender())
                 .visa(visaList)
+                .tags(tagList)
                 .build();
 
     }
