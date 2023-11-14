@@ -37,13 +37,17 @@ public class Recruit extends BaseEntity {
 
     private LocalDate expiredAt;
 
+    private String salaryType;
+
     private Integer salary;
 
     private String workType;
 
     private String workLocation;
 
-    private int workPeriod;
+    private LocalDate workStartDate;
+
+    private LocalDate workEndDate;
 
     private int workDaysWeek;
 
@@ -63,7 +67,8 @@ public class Recruit extends BaseEntity {
         this.salary = recruit.getSalary();
         this.workType = recruit.getWorkType();
         this.workLocation = recruit.getWorkLocation();
-        this.workPeriod = recruit.getWorkPeriod();
+        this.workStartDate = recruit.getWorkStartDate();
+        this.workEndDate = recruit.getWorkEndDate();
         this.workDaysWeek = recruit.getWorkDaysWeek();
         this.workStartHour = recruit.getWorkStartHour();
         this.gender = recruit.getGender();

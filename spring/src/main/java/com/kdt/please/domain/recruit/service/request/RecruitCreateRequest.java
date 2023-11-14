@@ -36,13 +36,10 @@ public record RecruitCreateRequest(
         // 근무 시작 시간
         @NotNull
         int workStartHour,
-        // 근무 종료 시간
         @NotNull
         int workEndHour,
-        // 근무 기간
-        int workPeriod,
-        // 주중 근무 일수
-        @NotNull
+        LocalDate workStartDate,
+        LocalDate workEndDate,
         int workDaysWeek,
 
         String gender
@@ -57,7 +54,8 @@ public record RecruitCreateRequest(
                 .workType(workType)
                 .workLocation(workLocation)
                 .workDaysWeek(workDaysWeek)
-                .workPeriod(workPeriod)
+                .workStartDate(workStartDate)
+                .workEndDate(workEndDate)
                 .workStartHour(workStartHour)
                 .workEndHour(workEndHour)
                 .gender(gender)

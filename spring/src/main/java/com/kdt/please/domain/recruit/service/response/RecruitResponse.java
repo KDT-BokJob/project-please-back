@@ -34,7 +34,8 @@ public record RecruitResponse(
         // 근무 종료 시간
         int workEndHour,
         // 근무 기간
-        int workPeriod,
+        LocalDate workStartDate,
+        LocalDate workEndDate,
         // 주중 근무 일수
         int workDaysWeek,
         String gender,
@@ -54,7 +55,8 @@ public record RecruitResponse(
                 .workLocation(recruit.getWorkLocation())
                 .workStartHour(recruit.getWorkStartHour())
                 .workEndHour(recruit.getWorkEndHour())
-                .workPeriod(recruit.getWorkPeriod())
+                .workStartDate(recruit.getWorkStartDate())
+                .workEndDate(recruit.getWorkEndDate())
                 .workDaysWeek(recruit.getWorkDaysWeek())
                 .gender(recruit.getGender())
                 .visa(visaList)
