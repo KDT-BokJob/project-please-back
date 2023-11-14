@@ -1,8 +1,8 @@
-package com.kdt.please.domain.resumeDefault.controller;
+package com.kdt.please.domain.resume.controller;
 
-import com.kdt.please.domain.resumeDefault.service.request.ResumeCreateRequest;
-import com.kdt.please.domain.resumeDefault.service.request.ResumeUpdateReq;
-import com.kdt.please.domain.resumeDefault.service.response.ResumeResponse;
+import com.kdt.please.domain.resume.service.request.ResumeCreateRequest;
+import com.kdt.please.domain.resume.service.request.ResumeUpdateRequest;
+import com.kdt.please.domain.resume.service.response.ResumeResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,22 +22,12 @@ public class ResumeController {
     @ApiOperation("이력서 조회")
     @GetMapping("/{resumeId}")
     public ResponseEntity<ResumeResponse> getResume(@PathVariable final Long resumeId){
-        return ResponseEntity.ok(ResumeResponse.builder()
-                .resumeId(1L)
-                .nationality("vietnam")
-                .firstName("lee")
-                .middleName("joo")
-                .lastName("hee")
-                .koreanProficiency(3)
-                .coverLetter("hihihi")
-                .degree("bachelor's degree")
-                .isExperienced(false)
-                .isDisabled(false).build());
+        return ResponseEntity.ok(null);
     }
 
     @ApiOperation("이력서 수정")
     @PutMapping("/{resumeId}")
-    public ResponseEntity<ResumeResponse> updateResume(@PathVariable final Long resumeId, @RequestBody @Valid ResumeUpdateReq req){
+    public ResponseEntity<ResumeResponse> updateResume(@PathVariable final Long resumeId, @RequestBody @Valid ResumeUpdateRequest req){
         return ResponseEntity.ok().build();
     }
 

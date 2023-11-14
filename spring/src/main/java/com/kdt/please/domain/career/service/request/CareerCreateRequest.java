@@ -12,7 +12,7 @@ public record CareerCreateRequest(
         @NotNull @Positive
         long resumeId,
         @NotNull
-        String job,
+        String companyName,
         @NotNull
         String role,
         @NotNull
@@ -20,8 +20,6 @@ public record CareerCreateRequest(
         LocalDate hireDate,
         @NotNull
         @DateTimeFormat(pattern = "yyyy-MM-dd")
-        LocalDate endDate,
-        String workPerformance,
-        String detailInfo
+        LocalDate endDate
 ) {
 }

@@ -1,47 +1,44 @@
-package com.kdt.please.domain.resumeDefault.service.request;
+package com.kdt.please.domain.resume.service.request;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public record ResumeUpdateReq(
-        @NotNull
+public record ResumeUpdateRequest(
+
         String firstName,
 
-        @NotNull
         String lastName,
 
-        @NotNull
         String phone,
 
-        @NotNull
         LocalDate birthdate,
 
-        @NotNull
         String address,
-        @NotNull
+
         String gender,
 
-        @NotNull
         String nationality,
 
-        @NotNull
         String period,
 
-        @NotNull
         String koreanProficiency,
 
-        @NotNull
         String degree,
 
-        @NotNull
         boolean isExperienced,
 
-        @NotNull
         boolean isDisabled,
 
         String coverLetter,
 
-        @NotNull
-        String hexaco
+        String hexaco,
+
+        String hopeJob,
+
+        String tag,
+
+        String resume_file,
+
+        Boolean isCompleted
 ) {
 }
