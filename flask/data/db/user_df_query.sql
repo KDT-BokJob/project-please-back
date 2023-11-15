@@ -54,3 +54,15 @@ SELECT
 FROM user_visa_info AS T1
 LEFT JOIN career_stats AS T2
 ON T1.resume_id = T2.resume_id;
+
+SELECT *
+FROM (
+	WITH T2 AS (
+		SELECT recruit_id, user_id
+        FROM apply
+        WHERE user_id IN (8,9,7,4,31)
+    ) 
+	SELECT T2.user_id, T1.recruit_id, T1.expired_at < now() AS is_expired
+	FROM recruit AS T1
+    RIGHT JOIN T2 ON T1.recruit_id = T2.recruit_id
+) AS T WHERE is_expired = TRUE;
