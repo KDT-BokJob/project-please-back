@@ -10,6 +10,8 @@ import java.time.LocalDate;
 
 @Builder
 public record UserApplyListResponse(
+        @NotNull @Positive
+        Long applyId,
 
         @NotNull @Positive
         Long resumeId,
@@ -35,8 +37,9 @@ public record UserApplyListResponse(
         @NotNull
         String nationality
 ) {
-    public static UserApplyListResponse from(Resume resume){
+    public static UserApplyListResponse from(Resume resume, Long applyId){
         return UserApplyListResponse.builder()
+                .applyId(applyId)
                 .resumeId(resume.getResumeId())
                 .firstName(resume.getFirstName())
                 .lastName(resume.getLastName())

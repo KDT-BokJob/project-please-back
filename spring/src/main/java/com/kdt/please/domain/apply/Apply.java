@@ -5,7 +5,6 @@ import com.kdt.please.domain.user.User;
 import com.kdt.please.global.BaseEntity;
 import com.kdt.please.global.Status;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;

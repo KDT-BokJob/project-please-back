@@ -11,17 +11,22 @@ import java.util.stream.Collectors;
 
 @Builder
 public record ApplyResponse(
-        long applyId,
-        long userId,
+        Long applyId,
+        Long userId,
 
-        long recruitId,
+        Long recruitId,
 
-        long resumeId,
+        Long resumeId,
         Status status
 ) {
     public static ApplyResponse from(Apply apply){
-        return new ApplyResponse(apply.getApplyId(), apply.getUser().getUserId(),
-                apply.getRecruit().getRecruitId(), apply.getResumeId(), apply.getStatus());
+        return ApplyResponse.builder()
+                .applyId(apply.getApplyId())
+                .userId(apply.getUser().getUserId())
+                .recruitId(apply.getRecruit().getRecruitId())
+                .resumeId(apply.getResumeId())
+                .status(apply.getStatus())
+                .build();
     }
 
     public static List<ApplyResponse> from(List<Apply> applyList){

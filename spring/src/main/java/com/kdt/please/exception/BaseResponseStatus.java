@@ -17,7 +17,8 @@ public enum BaseResponseStatus {
     MODIFY_FAIL_USERVISA(false, HttpStatus.INTERNAL_SERVER_ERROR, "유저 비자 정보 수정 실패"),
     MODIFY_FAIL_VISA(false, HttpStatus.INTERNAL_SERVER_ERROR, "비자 정보 수정 실패"),
     MODIFY_FAIL_APPLY(false, HttpStatus.INTERNAL_SERVER_ERROR, "지원 정보 수정 실패"),
-    DELETE_FAIL_USER(false, HttpStatus.INTERNAL_SERVER_ERROR, "유저 정보 삭제 실패");
+    DELETE_FAIL_USER(false, HttpStatus.INTERNAL_SERVER_ERROR, "유저 정보 삭제 실패"),
+    RESUME_NOT_COMPLETE(false, HttpStatus.INTERNAL_SERVER_ERROR, "이력서 미완성");
 
     private final boolean isSuccess;
     private final HttpStatus code;
