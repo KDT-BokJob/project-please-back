@@ -1,7 +1,8 @@
-.idea
 .venv
+.idea
+.vscode
 __pycache__
+venv
 node_modules
-
-/.flaskenv
-/.env
+.flaskenv
+.env

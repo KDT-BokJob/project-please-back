@@ -1,9 +1,6 @@
-import pandas as pd
 from dotenv import dotenv_values
 from flask import Flask, request, jsonify
 from flask import render_template
-
-from src.Recommendation.main import calc_result, find_similarity, recommendation
 
 app = Flask(__name__)
 config = dotenv_values(".flaskenv")
@@ -22,10 +19,7 @@ def hello_world():
 @app.route('/hello/')
 @app.route('/hello/<name>')
 def hello(name=None):
-    return render_template(
-        'hello.html',
-        name=name,
-        FLASK_RUN_PORT=config["FLASK_RUN_PORT"],
+    return render_template('hello.html', name=name, FLASK_RUN_PORT=config["FLASK_RUN_PORT"],
         SPRING_RUN_PORT=config["SPRING_RUN_PORT"])
 
 
@@ -52,42 +46,5 @@ def get_join():
     return jsonify(data)
 
 
-@app.route('/questions', methods=['GET'])
-def questions_get(questions100_list=None):
-    json = {"data": questions100_list}
-    return jsonify(json)
-
-
-@app.route('/questions', methods=['POST'])
-def questions_post():
-    param = request.get_json()
-    return jsonify(param)
-
-
-@app.route('/questions/jtc', methods=['POST'])
-def json_to_csv():
-    data = request.get_json()
-    df = pd.json_normalize(data["Results"])
-    df.transpose().to_csv("./data/temp.csv")
-    res = calc_result("./data/temp.csv")
-    return jsonify({"data": res})
-
-
-@app.route('/user/<user_id>/similarity', methods=['GET'])
-def get_users(user_id):
-    return jsonify(
-        {"id": user_id,
-         "data": find_similarity(user_id).to_dict()})
-
-
-@app.route('/recommendation/<user_id>', methods=['GET'])
-def get_recommendation_by_user_id(user_id):
-    df = recommendation(user_id, 2)
-
-    return jsonify(
-        {"id": user_id,
-         "data": df.to_dict('records')})
-
-
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
