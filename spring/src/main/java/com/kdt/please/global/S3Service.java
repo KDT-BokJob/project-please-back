@@ -18,7 +18,7 @@ public class S3Service {
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
-    public String saveImageFile(MultipartFile multipartFile) throws IOException {
+    public String saveFile(MultipartFile multipartFile) throws IOException {
         String originalFilename = multipartFile.getOriginalFilename();
         String newFilename = UUID.randomUUID() + "_" + originalFilename;
 

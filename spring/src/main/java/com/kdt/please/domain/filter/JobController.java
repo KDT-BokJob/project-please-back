@@ -22,9 +22,15 @@ public class JobController {
         return ResponseEntity.ok(jobService.getJobNameList(keyword));
     }
 
-    @ApiOperation("업종명에 해당하는 비자 목록 조회")
+    @ApiOperation("해당 업종에 취업할 수 있는 비자 목록 조회")
     @GetMapping("/visa/{keyword}")
     public ResponseEntity<List<String>> getVisaListByJobName(@PathVariable String keyword){
         return ResponseEntity.ok(jobService.getVisaList(keyword));
+    }
+
+    @ApiOperation("특정 비자로 취업할 수 있는 업종 리스트 조회 - 최대 5개")
+    @GetMapping("/jobName/{keyword}")
+    public ResponseEntity<List<String>> getJobByVisa(@PathVariable String keyword){
+        return ResponseEntity.ok(jobService.getJobNamesByVisa(keyword));
     }
 }

@@ -31,7 +31,7 @@ public class CompanyService {
         // 현재 유저가 구인자인지 확인
         String imageUrl = "";
         if(file != null) {
-            imageUrl = s3Service.saveImageFile(file);
+            imageUrl = s3Service.saveFile(file);
         }
         Company company = companyCreateRequest.toEntity();
         company.setUser(userRepository.findById(companyCreateRequest.userId())
@@ -51,7 +51,7 @@ public class CompanyService {
         company.changeCompany(request);
         String imageUrl = "";
         if(file != null) {
-            imageUrl = s3Service.saveImageFile(file);
+            imageUrl = s3Service.saveFile(file);
             company.setImage(imageUrl);
         } else {
             company.setImage("");

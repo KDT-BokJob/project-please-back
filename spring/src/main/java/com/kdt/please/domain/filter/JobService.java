@@ -26,6 +26,10 @@ public class JobService {
         return jobCode;
     }
 
+    public List<String> getJobNamesByVisa(String visa){
+        return jobCodeRepository.findJobNamesByVisa(visa);
+    }
+
     public List<String> getVisaList(String keyword){
         // 업종명으로 업종코드 찾기
         List<String> jobCodes = jobCodeRepository.findJobCodeByKeyword(keyword);
