@@ -13,4 +13,8 @@ public interface RecruitRepository extends JpaRepository<Recruit, Long> {
 
     @Query("select r from Recruit r where r.title like concat('%', :keyword, '%')")
     List<Recruit> findByKeyword(@Param("keyword") String keyword);
+
+    @Query(value = "select * from recruit r join company c where r.company_id=c.company_id and c.user_id=:userId", nativeQuery = true)
+    List<Recruit> findByRecruiterId(@Param("userId") Long userId);
+
 }

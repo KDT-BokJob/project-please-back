@@ -1,14 +1,11 @@
 package com.kdt.please.domain.certification.service.request;
 
-import com.kdt.please.domain.certification.Certification;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public record CertificationCreateRequest(
-        @NotNull
-        Long resumeId,
+public record CertificationUpdateRequest(
 
         @NotNull
         String certificationName,
@@ -24,12 +21,4 @@ public record CertificationCreateRequest(
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         LocalDate expiredDate
 ) {
-    public Certification toEntity(){
-        return Certification.builder()
-                .certificationName(certificationName)
-                .issuedBy(issuedBy)
-                .issuedDate(issuedDate)
-                .expiredDate(expiredDate)
-                .build();
-    }
 }

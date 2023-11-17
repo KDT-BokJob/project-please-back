@@ -1,5 +1,6 @@
 package com.kdt.please.domain.recruit.service;
 
+import com.kdt.please.domain.apply.repository.ApplyRepository;
 import com.kdt.please.domain.company.repository.CompanyRepository;
 import com.kdt.please.domain.filter.JobService;
 import com.kdt.please.domain.filter.VisaFilter;
@@ -8,6 +9,7 @@ import com.kdt.please.domain.recruit.Recruit;
 import com.kdt.please.domain.recruit.repository.RecruitRepository;
 import com.kdt.please.domain.recruit.service.request.RecruitCreateRequest;
 import com.kdt.please.domain.recruit.service.request.RecruitUpdateRequest;
+import com.kdt.please.domain.recruit.service.response.RecruitApplyResponse;
 import com.kdt.please.domain.recruit.service.response.RecruitResponse;
 import com.kdt.please.domain.recruit.service.response.RecruitSimpleResponse;
 import com.kdt.please.domain.recruitTag.RecruitTag;
@@ -35,6 +37,7 @@ import java.util.stream.Collectors;
 public class RecruitService {
 
     private final RecruitRepository recruitRepository;
+    private final ApplyRepository applyRepository;
     private final CompanyRepository companyRepository;
     private final VisaFilterRepository visaFilterRepository;
     private final RecruitTagRepository recruitTagRepository;
@@ -124,6 +127,15 @@ public class RecruitService {
             list.add(RecruitSimpleResponse.from(recruit, findVisaList(recruit.getJobCode().getJobCode())));
         }
         return list;
+    }
+
+    public List<RecruitApplyResponse> getRecruitListByRecruiter(Long userId){
+        List<Recruit> recruitList = recruitRepository.findByRecruiterId(userId);
+        return recruitList.stream()
+                .map(r -> RecruitApplyResponse.from(r,
+                        findVisaList(r.getJobCode().getJobCode()),
+                        applyRepository.getApplicantCountByRecruitId(r.getRecruitId())))
+                .collect(Collectors.toList());
     }
 
     public List<RecruitSimpleResponse> searchByKeyword(String keyword){

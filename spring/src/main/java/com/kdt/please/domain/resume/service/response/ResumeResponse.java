@@ -25,7 +25,7 @@ public record ResumeResponse(
         String hexaco,
         String image,
         List<String> hopeJob,
-        List<String> tag,
+        List<String> tags,
         String resumeFile,
         String visa,
         Boolean isCompleted
@@ -48,7 +48,7 @@ public record ResumeResponse(
                 .hexaco(resume.getHexaco())
                 .resumeFile(resume.getResumeFile())
                 .image(resume.getImage())
-                .tag(tagList)
+                .tags(tagList)
                 .hopeJob(hopeJobList)
                 .visa(visa)
                 .isCompleted(resume.getIsCompleted())

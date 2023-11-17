@@ -11,13 +11,13 @@ public record CareerUpdateRequest(
         @NotNull
         String companyName,
         @NotNull
-        String role,
+        String responsibility,
         @NotNull
         @DateTimeFormat(pattern = "yyyy-MM-dd")
-        LocalDate hireDate,
+        LocalDate startedAt,
         @NotNull
         @DateTimeFormat(pattern = "yyyy-MM-dd")
-        LocalDate endDate
+        LocalDate endedAt
 ) {
 
 }
