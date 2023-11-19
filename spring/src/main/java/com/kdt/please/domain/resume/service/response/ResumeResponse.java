@@ -4,47 +4,33 @@ import com.kdt.please.domain.resume.Resume;
 import lombok.Builder;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Builder
 public record ResumeResponse(
         Long resumeId,
         String firstName,
-
         String lastName,
-
         String phone,
-
         LocalDate birthdate,
-
         String address,
-
         String gender,
-
         String nationality,
-
         String period,
-
         String koreanProficiency,
-
-        String degree,
-
-        boolean isExperienced,
-
-        boolean isDisabled,
-
+        Boolean isExperienced,
+        Boolean isDisabled,
         String coverLetter,
-
         String hexaco,
-
-        String hopeJob,
-
-        String tag,
-
-        String resume_file,
-
+        String image,
+        List<String> hopeJob,
+        List<String> tags,
+        String resumeFile,
+        String visa,
         Boolean isCompleted
 ) {
-    public static ResumeResponse from(Resume resume){
+    public static ResumeResponse from(Resume resume, List<String> tagList, List<String> hopeJobList, String visa){
         return ResumeResponse.builder()
                 .resumeId(resume.getResumeId())
                 .firstName(resume.getFirstName())
@@ -56,13 +42,15 @@ public record ResumeResponse(
                 .nationality(resume.getNationality())
                 .period(resume.getPeriod())
                 .koreanProficiency(resume.getKoreanProficiency())
-                .degree(resume.getDegree())
-                .isExperienced(resume.isExperienced())
-                .isDisabled(resume.isDisabled())
+                .isExperienced(resume.getIsExperienced())
+                .isDisabled(resume.getIsDisabled())
                 .coverLetter(resume.getCoverLetter())
                 .hexaco(resume.getHexaco())
-                .tag(resume.getTag())
-                .resume_file(resume.getResume_file())
+                .resumeFile(resume.getResumeFile())
+                .image(resume.getImage())
+                .tags(tagList)
+                .hopeJob(hopeJobList)
+                .visa(visa)
                 .isCompleted(resume.getIsCompleted())
                 .build();
     }

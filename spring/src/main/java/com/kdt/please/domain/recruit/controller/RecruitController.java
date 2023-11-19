@@ -3,9 +3,9 @@ package com.kdt.please.domain.recruit.controller;
 import com.kdt.please.domain.recruit.service.RecruitService;
 import com.kdt.please.domain.recruit.service.request.RecruitCreateRequest;
 import com.kdt.please.domain.recruit.service.request.RecruitUpdateRequest;
+import com.kdt.please.domain.recruit.service.response.RecruitApplyResponse;
 import com.kdt.please.domain.recruit.service.response.RecruitResponse;
 import com.kdt.please.domain.recruit.service.response.RecruitSimpleResponse;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
@@ -50,10 +50,17 @@ public class RecruitController {
     }
 
     @ApiOperation("기업이 올린 공고 목록 조회")
-    @GetMapping("/{companyId}/list")
+    @GetMapping("/company/list/{companyId}")
     public ResponseEntity<List<RecruitSimpleResponse>> getRecruitList(@ApiParam(value = "기업 ID") @PathVariable(value = "companyId") Long companyId){
 
         return ResponseEntity.ok(recruitService.getRecruitListByCompany(companyId));
+    }
+
+    @ApiOperation("구인자가 올린 공고 목록 조회")
+    @GetMapping("/recruiter/list/{userId}")
+    public ResponseEntity<List<RecruitApplyResponse>> getMyRecruitList(@ApiParam(value = "구인자 ID") @PathVariable(value = "userId") Long userId){
+
+        return ResponseEntity.ok(recruitService.getRecruitListByRecruiter(userId));
     }
 
     @ApiOperation("전체 공고 목록 조회")

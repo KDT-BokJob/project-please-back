@@ -1,15 +1,14 @@
 package com.kdt.please.domain.certification;
 
+import com.kdt.please.domain.certification.service.request.CertificationUpdateRequest;
 import com.kdt.please.domain.resume.Resume;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter
+@Setter
 @Builder
 @Entity
 @AllArgsConstructor
@@ -29,4 +28,11 @@ public class Certification {
     private LocalDate issuedDate;
 
     private LocalDate expiredDate;
+
+    public void change(CertificationUpdateRequest req){
+        this.certificationName = req.certificationName();
+        this.expiredDate = req.expiredDate();
+        this.issuedBy = req.issuedBy();
+        this.issuedDate = req.issuedDate();
+    }
 }

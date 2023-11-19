@@ -16,4 +16,8 @@ public interface JobCodeRepository extends JpaRepository<JobCode, String> {
 
     @Query("select jc from JobCode jc where jc.jobName =:keyword")
     Optional<JobCode> findJobCodeByJobName(@Param("keyword") String keyword);
+
+    @Query(value = "SELECT distinct job_code.job_name FROM job_code join visa_filter where job_code.job_code = visa_filter.job_code and visa_filter.visa=:visa order by RAND() limit 5",nativeQuery = true)
+    List<String> findJobNamesByVisa(@Param("visa") String visa);
+
 }
