@@ -45,7 +45,7 @@ public record UserApplyListResponse(
                 .lastName(resume.getLastName())
                 .gender(resume.getGender())
                 .age(String.valueOf(LocalDate.now().getYear() - resume.getBirthdate().getYear()))
-                .isExperienced(resume.isExperienced())
+                .isExperienced(resume.getIsExperienced())
                 .address(resume.getAddress())
                 .nationality(resume.getNationality())
                 .build();
