@@ -19,4 +19,6 @@ public interface ApplyRepository extends JpaRepository<Apply, Long> {
 
     @Query(value = "select count(*) from apply a where a.recruit_id=:recruitId", nativeQuery = true)
     int getApplicantCountByRecruitId(@Param("recruitId") Long recruitId);
+  
+    Optional<Apply> findByRecruit_RecruitIdAndUser_UserId(Long recruitId, Long userId);
 }
