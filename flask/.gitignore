@@ -1,5 +1,5 @@
 .venv
-.idea
+.idea/
 .vscode
 __pycache__
 venv
@@ -7,3 +7,4 @@ node_modules
 env
 .flaskenv
 /.env
+*.json
