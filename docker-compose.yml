@@ -22,3 +22,16 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/please?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: Abcd123!
+  application_flask:
+    image: oomia/please-server
+    restart: always
+    ports:
+      - 80:8000
+    depends_on:
+      - database
+    container_name: app_flask
+    environment:
+      FLASK_APP: main.py
+      FLASK_ENV: production
+      FLASK_RUN_PORT: 8000
+      SPRING_RUN_PORT: 8080
