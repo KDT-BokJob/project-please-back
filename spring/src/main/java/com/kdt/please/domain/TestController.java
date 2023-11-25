@@ -36,6 +36,6 @@ public class TestController {
 
     @GetMapping("/login")
     public String login(){
-        return "login";
+        return "redirect:http://kdt-please.store/oauth2/authorization/google";
     }
 }

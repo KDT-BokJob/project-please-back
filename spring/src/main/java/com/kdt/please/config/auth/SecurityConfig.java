@@ -20,9 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/", "/login").permitAll()
-                /*.antMatchers("/oauth2/authorization/**","/login/oauth2/code/**").permitAll()
+                .antMatchers("/oauth2/authorization/**","/login/oauth2/code/**").permitAll()
                 .antMatchers("/**").hasRole("USER")
-                .anyRequest().authenticated()*/
+                .anyRequest().authenticated()
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")
@@ -33,6 +33,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 .baseUri("/login/oauth2/code/*"))
                         .userInfoEndpoint(userInfoEndpointConfig -> userInfoEndpointConfig
                                 .userService(customOAuth2UserService))
-                        .defaultSuccessUrl("http://localhost:8080/"));
+                        .defaultSuccessUrl("https://project-please-front-git-develop-taemin-jangs-projects.vercel.app/"));
     }
 }
