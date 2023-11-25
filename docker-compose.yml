@@ -4,7 +4,7 @@ services:
     image: mysql
     container_name: db
     environment:
-      - MYSQL_DATABASE=please
+      - MYSQL_DATABASE=test
       - MYSQL_ROOT_HOST=%
       - MYSQL_ROOT_PASSWORD=Abcd123!
     command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
@@ -19,7 +19,7 @@ services:
       - database
     container_name: app
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/please?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/test?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: Abcd123!
   application_flask:
