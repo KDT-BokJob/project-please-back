@@ -5,9 +5,13 @@ import pymysql.cursors
 from werkzeug.datastructures import ImmutableMultiDict
 
 
+def get_connection():
+    return pymysql.connect(host='localhost', user='root', password='Abcd123!', database='please', charset='utf8mb4',
+                           cursorclass=pymysql.cursors.DictCursor)
+
+
 def get_user_df():
-    connection = pymysql.connect(host='localhost', user='root', password='root', database='Please', charset='utf8mb4',
-                                 cursorclass=pymysql.cursors.DictCursor)
+    connection = get_connection()
     with connection:
         with connection.cursor() as cursor:
             create_user_visa_info = """
@@ -82,8 +86,7 @@ def get_valid_recruit_id_by_user_ids(user_df):
     user_ids = ",".join(map(lambda x: str(x), user_df.keys()))
     print(f"{user_ids=}")
 
-    connection = pymysql.connect(host='localhost', user='root', password='root', database='Please', charset='utf8mb4',
-                                 cursorclass=pymysql.cursors.DictCursor)
+    connection = get_connection()
     with connection:
         with connection.cursor() as cursor:
             find_gonggo = f"""
@@ -119,10 +122,9 @@ def get_filtered_recruit_id(arguments: ImmutableMultiDict):
     args = []
     for key in argList.keys():
         args.append(argList[key])
-
     conditions = "" if (len(args) < 1) else "WHERE " + str.join(' AND ', list(args))
-    connection = pymysql.connect(host='localhost', user='root', password='root', database='Please', charset='utf8mb4',
-                                 cursorclass=pymysql.cursors.DictCursor)
+
+    connection = get_connection()
     with connection:
         with connection.cursor() as cursor:
             create_recruit_visa_keyword_df = """
