@@ -1,0 +1,25 @@
+{
+  "name": "Flask",
+  "packageManager": "pnpm",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "commitizen": "^4.3.0",
+    "cz-customizable": "^7.0.0"
+  },
+  "scripts": {
+    "commit": "git add . & git status & cz",
+    "push": "git add . & cz & git push"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-customizable"
+    }
+  },
+  "dependencies": {
+    "@ngneat/falso": "^7.1.1"
+  }
+}
