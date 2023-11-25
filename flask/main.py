@@ -1,9 +1,8 @@
-import pandas as pd
 from dotenv import dotenv_values
 from flask import Flask, request, jsonify
 from flask import render_template
 
-from src.rec import asd, calc_result
+from src.db.db import get_filtered_recruit_id
 
 app = Flask(__name__)
 config = dotenv_values(".flaskenv")
@@ -22,11 +21,8 @@ def hello_world():
 @app.route('/hello/')
 @app.route('/hello/<name>')
 def hello(name=None):
-    return render_template(
-        'hello.html',
-        name=name,
-        FLASK_RUN_PORT=config["FLASK_RUN_PORT"],
-        SPRING_RUN_PORT=config["SPRING_RUN_PORT"])
+    return render_template('hello.html', name=name, FLASK_RUN_PORT=config["FLASK_RUN_PORT"],
+                           SPRING_RUN_PORT=config["SPRING_RUN_PORT"])
 
 
 @app.route('/fetch/example')
@@ -52,27 +48,13 @@ def get_join():
     return jsonify(data)
 
 
-@app.route('/questions', methods=['GET'])
-def questions_get(questions100_list=None):
-    json = {"data": questions100_list}
-    return jsonify(json)
-
-
-@app.route('/questions', methods=['POST'])
-def questions_post():
-    param = request.get_json()
-    return jsonify(param)
-
-
-@app.route('/questions/jtc', methods=['POST'])
-def json_to_csv():
-    data = request.get_json()
-    df = pd.json_normalize(data["Results"])
-    df.transpose().to_csv("./data/temp.csv")
-    res = calc_result("./data/temp.csv")
-    return jsonify({"data": res})
+@app.route('/recruit/filter', methods=['GET'])
+def get_filtered_recruit():
+    arguments = request.args
+    df = get_filtered_recruit_id(arguments);
+    # print(arguments)
+    return jsonify({"args": request.args, "data": df.to_dict('records')})
 
 
 if __name__ == '__main__':
-    db = asd()
-    app.run()
+    app.run(debug=True)
