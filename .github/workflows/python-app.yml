@@ -45,7 +45,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_FLASK_PASSWORD }}
       - name: Build Docker image
         run: |
-          docker build ${{ env.APP_NAME }} ./flask
+          docker build -t ${{ env.APP_NAME }} ./flask
           docker tag ${{ env.APP_NAME }}:latest ${{ env.APP_NAME }}:latest
       - name: Push Docker image
         run: |
