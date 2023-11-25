@@ -12,11 +12,14 @@
   },
   "scripts": {
     "commit": "git add . & git status & cz",
-    "push": "commit & git push"
+    "push": "git add . & cz & git push"
   },
   "config": {
     "commitizen": {
       "path": "cz-customizable"
     }
+  },
+  "dependencies": {
+    "@ngneat/falso": "^7.1.1"
   }
 }
