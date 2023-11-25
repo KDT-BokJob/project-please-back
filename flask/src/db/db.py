@@ -1,5 +1,8 @@
+from pprint import pprint
+
 import pandas as pd
 import pymysql.cursors
+from werkzeug.datastructures import ImmutableMultiDict
 
 
 def get_user_df():
@@ -99,3 +102,74 @@ def get_valid_recruit_id_by_user_ids(user_df):
             cursor.execute(find_gonggo)
             result = cursor.fetchall()
             return pd.DataFrame(result)
+
+
+def get_filtered_recruit_id(arguments: ImmutableMultiDict):
+    argList = {}
+    if (args := getArgListsAsDict(arguments)) is not None:
+        for key in args.keys():
+            argList[key] = stringify(key, args[key])
+        if argList.keys().__contains__("visa"):
+            argList.pop("visa")
+            res_visa = []
+            for val in args['visa']:
+                res_visa.append(f"'{val}'")
+            argList['visa'] = f"(visa IN ({str.join(',', res_visa)}))"
+
+    args = []
+    for key in argList.keys():
+        args.append(argList[key])
+
+    conditions = "" if (len(args) < 1) else "WHERE " + str.join(' AND ', list(args))
+    connection = pymysql.connect(host='localhost', user='root', password='root', database='Please', charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    with connection:
+        with connection.cursor() as cursor:
+            create_recruit_visa_keyword_df = """
+            CREATE OR REPLACE VIEW recruit_visa_filter AS
+            SELECT
+                T1.recruit_id
+                ,T1.work_location
+                ,T2.visa
+                ,T3.job_name
+                ,concat(T1.work_location, T2.visa, T3.job_name, T1.title, T1.content, T1.work_type) as keyword
+            FROM
+                recruit as T1,
+                visa_filter as T2,
+                job_code as T3
+            WHERE
+                T1.job_code = T2.job_code AND
+                T1.job_code = T3.job_code;
+            """
+            filter_by_arguments = f"""
+            SELECT
+                DISTINCT recruit_id
+            FROM recruit_visa_filter {conditions};
+            """
+            pprint(filter_by_arguments)
+
+            cursor.execute(create_recruit_visa_keyword_df)
+            cursor.execute(filter_by_arguments)
+            result = cursor.fetchall()
+            return pd.DataFrame(result)
+
+
+def getArgListsAsDict(arguments: ImmutableMultiDict):
+    res = {}
+    for key in arguments.keys():
+        res[f'{key}'] = arguments.getlist(key)
+    if res.keys().__contains__('keyword'):
+        res['keyword'] = arguments['keyword'].split()
+    return res
+
+
+def stringify(key: str, arguments: list) -> str:
+    prefix = "("
+    suffix = ")"
+    bridge = " OR "
+
+    res = []
+    for val in arguments:
+        res.append(f"{key} LIKE '%{val}%'")
+
+    return prefix + str.join(bridge, res) + suffix
