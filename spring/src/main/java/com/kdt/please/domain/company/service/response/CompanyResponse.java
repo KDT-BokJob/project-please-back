@@ -6,9 +6,9 @@ import lombok.Builder;
 @Builder
 public record CompanyResponse(
         // 기업 ID
-        String companyId,
+        Long companyId,
         // 회원 ID
-        String userId,
+        Long userId,
         // 사업자 등록 번호
         String businessCode,
         // 기업명
@@ -17,18 +17,18 @@ public record CompanyResponse(
         String address,
         boolean isVisaTransform,
         // 사원 수
-        String employeeCount,
+        int employeeCount,
         // 외국인 사원 수
-        String foreignEmployeeCount
+        int foreignEmployeeCount
 ) {
     public static CompanyResponse from(Company company){
         return CompanyResponse.builder()
-                .companyId(String.valueOf(company.getCompanyId()))
-                .userId(String.valueOf(company.getUser().getUserId()))
+                .companyId(company.getCompanyId())
+                .userId(company.getUser().getUserId())
                 .businessCode(company.getBusinessCode())
-                .employeeCount(String.valueOf(company.getEmployeeCount()))
+                .employeeCount(company.getEmployeeCount())
                 .name(company.getName())
-                .foreignEmployeeCount(String.valueOf(company.getForeignEmployeeCount()))
+                .foreignEmployeeCount(company.getForeignEmployeeCount())
                 .businessCode(company.getBusinessCode())
                 .phone(company.getPhone())
                 .address(company.getAddress())
