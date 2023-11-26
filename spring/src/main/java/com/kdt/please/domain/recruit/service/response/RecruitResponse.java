@@ -10,7 +10,7 @@ import java.util.List;
 @Builder
 public record RecruitResponse(
         // 공고 ID
-        Long recruitId,
+        String recruitId,
         // 기업 ID
         CompanyResponse companyResponse,
         // 직업코드
@@ -24,41 +24,41 @@ public record RecruitResponse(
         // 마감일
         LocalDate expiredAt,
         // 급여
-        Integer salary,
+        String salary,
         // 근무 형태
         String workType,
         // 장소
         String workLocation,
         // 근무 시작 시간
-        int workStartHour,
+        String workStartHour,
         // 근무 종료 시간
-        int workEndHour,
+        String workEndHour,
         // 근무 기간
         LocalDate workStartDate,
         LocalDate workEndDate,
         // 주중 근무 일수
-        int workDaysWeek,
+        String workDaysWeek,
         String gender,
         List<String> visa,
         List<String> tags
 ) {
     public static RecruitResponse from(Recruit recruit, List<String> visaList, List<String> tagList){
         return RecruitResponse.builder()
-                .recruitId(recruit.getRecruitId())
+                .recruitId(recruit.getRecruitId().toString())
                 .companyResponse(CompanyResponse.from(recruit.getCompany()))
                 .jobName(recruit.getJobCode().getJobName())
                 .title(recruit.getTitle())
                 .content(recruit.getContent())
                 .createdAt(recruit.getCreatedAt())
                 .expiredAt(recruit.getExpiredAt())
-                .salary(recruit.getSalary())
+                .salary(recruit.getSalary().toString())
                 .workType(recruit.getWorkType())
                 .workLocation(recruit.getWorkLocation())
-                .workStartHour(recruit.getWorkStartHour())
-                .workEndHour(recruit.getWorkEndHour())
+                .workStartHour(String.valueOf(recruit.getWorkStartHour()))
+                .workEndHour(String.valueOf(recruit.getWorkEndHour()))
                 .workStartDate(recruit.getWorkStartDate())
                 .workEndDate(recruit.getWorkEndDate())
-                .workDaysWeek(recruit.getWorkDaysWeek())
+                .workDaysWeek(String.valueOf(recruit.getWorkDaysWeek()))
                 .gender(recruit.getGender())
                 .visa(visaList)
                 .tags(tagList)
