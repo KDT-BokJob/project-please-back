@@ -20,9 +20,9 @@ public record RecruitResponse(
         // 내용
         String content,
         // 작성일
-        LocalDate createdAt,
+        String createdAt,
         // 마감일
-        LocalDate expiredAt,
+        String expiredAt,
         // 급여
         String salary,
         // 근무 형태
@@ -34,8 +34,8 @@ public record RecruitResponse(
         // 근무 종료 시간
         String workEndHour,
         // 근무 기간
-        LocalDate workStartDate,
-        LocalDate workEndDate,
+        String workStartDate,
+        String workEndDate,
         // 주중 근무 일수
         String workDaysWeek,
         String gender,
@@ -44,20 +44,20 @@ public record RecruitResponse(
 ) {
     public static RecruitResponse from(Recruit recruit, List<String> visaList, List<String> tagList){
         return RecruitResponse.builder()
-                .recruitId(recruit.getRecruitId().toString())
+                .recruitId(String.valueOf(recruit.getRecruitId()))
                 .companyResponse(CompanyResponse.from(recruit.getCompany()))
                 .jobName(recruit.getJobCode().getJobName())
                 .title(recruit.getTitle())
                 .content(recruit.getContent())
-                .createdAt(recruit.getCreatedAt())
-                .expiredAt(recruit.getExpiredAt())
-                .salary(recruit.getSalary().toString())
+                .createdAt(String.valueOf(recruit.getCreatedAt()))
+                .expiredAt(String.valueOf(recruit.getExpiredAt()))
+                .salary(String.valueOf(recruit.getSalary()))
                 .workType(recruit.getWorkType())
                 .workLocation(recruit.getWorkLocation())
                 .workStartHour(String.valueOf(recruit.getWorkStartHour()))
                 .workEndHour(String.valueOf(recruit.getWorkEndHour()))
-                .workStartDate(recruit.getWorkStartDate())
-                .workEndDate(recruit.getWorkEndDate())
+                .workStartDate(String.valueOf(recruit.getWorkStartDate()))
+                .workEndDate(String.valueOf(recruit.getWorkEndDate()))
                 .workDaysWeek(String.valueOf(recruit.getWorkDaysWeek()))
                 .gender(recruit.getGender())
                 .visa(visaList)
