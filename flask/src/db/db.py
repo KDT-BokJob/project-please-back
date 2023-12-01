@@ -83,7 +83,7 @@ def get_valid_recruit_id_by_user_ids(user_df):
     if user_df is None: return None
     user_ids = ",".join(map(lambda x: str(x), user_df.keys()))
     print(f"{user_ids=}")
-
+    
     connection = get_db_connection()
     with connection:
         with connection.cursor() as cursor:
@@ -122,6 +122,7 @@ def get_filtered_recruit_id(arguments: ImmutableMultiDict):
         args.append(argList[key])
 
     conditions = "" if (len(args) < 1) else "WHERE " + str.join(' AND ', list(args))
+    
     connection = get_db_connection()
     with connection:
         with connection.cursor() as cursor:

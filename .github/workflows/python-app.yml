@@ -50,16 +50,3 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ env.APP_NAME }}:latest
-
-      ## docker compose up
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_KEY }}
-          script: |
-            sudo docker rm -f $(docker ps -qa)
-            sudo docker pull ${{ secrets.DOCKER_REPO }}/please-server
-            docker-compose -f ~/project-please-back/docker-compose.yml up -d
-            docker image prune -f
