@@ -9,9 +9,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "dev-spring" ]
+    branches: [ "main", "dev-spring" ]
   pull_request:
-    branches: [ "dev-spring" ]
+    branches: [ "main", "dev-spring" ]
 
 permissions:
   contents: read
@@ -57,16 +57,3 @@ jobs:
         docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
         docker build -t ${{ secrets.DOCKER_REPO }}/please-server ./spring
         docker push ${{ secrets.DOCKER_REPO }}/please-server
-
-    ## docker compose up
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ubuntu
-        key: ${{ secrets.EC2_KEY }}
-        script: |
-          sudo docker rm -f $(docker ps -qa)
-          sudo docker pull ${{ secrets.DOCKER_REPO }}/please-server
-          docker-compose -f ~/project-please-back/docker-compose.yml up -d
-          docker image prune -f
