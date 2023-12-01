@@ -3,6 +3,7 @@ services:
 
   reverse_proxy:
     image: nginx:latest
+    restart: no
     ports:
       - "80:80"
     depends_on:
@@ -17,7 +18,7 @@ services:
   app_spring:
     hostname: springHost
     image: jh0903/please-server
-    restart: always
+    restart: no
     expose:
       - 8080
     depends_on:
@@ -32,7 +33,7 @@ services:
   app_flask:
     hostname: flaskHost
     image: oomia/please-server
-    restart: always
+    restart: no
     expose:
       - 8000
     depends_on:
@@ -47,6 +48,7 @@ services:
 
   mysql_db:
     image: mysql
+    restart: no
     hostname: mysqlHost
     environment:
       - MYSQL_DATABASE=test

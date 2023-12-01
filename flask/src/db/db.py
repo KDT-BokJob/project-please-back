@@ -5,7 +5,7 @@ import pymysql.cursors
 from werkzeug.datastructures import ImmutableMultiDict
 
 def get_db_connection():
-    return pymysql.connect(host='localhost', user='root', password='root', database='test', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+    return pymysql.connect(host='mysqlHost', user='root', password='root', database='test', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
 
 
 def get_user_df():
