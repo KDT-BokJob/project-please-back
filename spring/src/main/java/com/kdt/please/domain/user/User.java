@@ -1,5 +1,6 @@
 package com.kdt.please.domain.user;
 
+import com.kdt.please.domain.company.Company;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,22 +16,35 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class User {
 
-    @Id @GeneratedValue
-    private Long id;
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long userId;
 
     private String email;
 
-    private String profileImg;
+    private String name;
 
-    private String phone;
-
-    private LocalDate birth;
-
-    private String address;
+    @Column(length = 1000)
+    private String profileImage;
 
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    private UserRole role;
 
-    private String gender;
+    @Builder
+    public User(String name, String email, String profileImg, UserRole userRole) {
+        this.name = name;
+        this.email = email;
+        this.profileImage = profileImg;
+        this.role = userRole;
+    }
 
+    public User update(String name, String profileImg) {
+        this.name = name;
+        this.profileImage = profileImg;
+
+        return this;
+    }
+
+    public String getRoleKey() {
+        return this.role.getRole();
+    }
 }
