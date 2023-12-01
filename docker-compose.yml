@@ -1,37 +1,61 @@
 version: "3"
 services:
-  database:
-    image: mysql
-    container_name: db
-    environment:
-      - MYSQL_DATABASE=test
-      - MYSQL_ROOT_HOST=%
-      - MYSQL_ROOT_PASSWORD=Abcd123!
-    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+
+  reverse_proxy:
+    image: nginx:latest
     ports:
-      - 3308:3306
-  application:
+      - "80:80"
+    depends_on:
+      app_spring:
+        condition: service_started
+      app_flask:
+        condition: service_started
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf
+
+
+  app_spring:
+    hostname: springHost
     image: jh0903/please-server
     restart: always
-    ports:
-      - 80:8080
-    depends_on: # 이 항목에 명시된 컨테이너가 먼저 생성되고 실행됨
-      - database
+    expose:
+      - 8080
+    depends_on:
+      mysql_db:
+        condition: service_healthy
     container_name: app
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/test?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqlHost:3306/test?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: Abcd123!
-  application_flask:
+      SPRING_DATASOURCE_PASSWORD: root
+
+  app_flask:
+    hostname: flaskHost
     image: oomia/please-server
     restart: always
-    ports:
-      - 80:8000
+    expose:
+      - 8000
     depends_on:
-      - database
+      mysql_db:
+        condition: service_healthy
     container_name: app_flask
     environment:
       FLASK_APP: main.py
       FLASK_ENV: production
       FLASK_RUN_PORT: 8000
       SPRING_RUN_PORT: 8080
+
+  mysql_db:
+    image: mysql
+    hostname: mysqlHost
+    environment:
+      - MYSQL_DATABASE=test
+      - MYSQL_ROOT_HOST=root
+      - MYSQL_ROOT_PASSWORD=root
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "mysqlHost", "--silent" ]
+      interval: 3s
+      retries: 5
+    expose:
+      - 3306
