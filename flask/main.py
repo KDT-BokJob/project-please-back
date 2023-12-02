@@ -51,10 +51,10 @@ def get_join():
 @app.route('/recruit/filter', methods=['GET'])
 def get_filtered_recruit():
     arguments = request.args
-    df = get_filtered_recruit_id(arguments);
+    df = get_filtered_recruit_id(arguments)
     # print(arguments)
     return jsonify({"args": request.args, "data": df.to_dict('records')})
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=8000)
