@@ -2,18 +2,29 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://mysqlHost:3306/test?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
-    password: 1234
-    ##Abcd123!
+    password: root
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+    defer-datasource-initialization: true
     generate-ddl: true
+    properties:
+      hibernate:
+        format_sql: true
+  sql:
+    init:
+      mode: always
 
   profiles:
     include: oauth
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always

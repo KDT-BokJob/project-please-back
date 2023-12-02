@@ -1,0 +1,29 @@
+name: deployment
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy_project:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      ## docker compose up
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            sudo docker rm -f $(docker ps -qa)
+            sudo docker pull ${{ secrets.DOCKER_REPO }}/please-server
+            docker-compose -f ~/project-please-back/docker-compose.yml up -d
+            docker image prune -f

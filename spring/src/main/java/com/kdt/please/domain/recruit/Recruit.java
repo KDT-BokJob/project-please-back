@@ -1,50 +1,86 @@
 package com.kdt.please.domain.recruit;
 
-import com.kdt.please.domain.recruiter.Recruiter;
+import com.kdt.please.domain.apply.Apply;
+import com.kdt.please.domain.company.Company;
+import com.kdt.please.domain.filter.JobCode;
+import com.kdt.please.domain.recruit.service.request.RecruitUpdateRequest;
+import com.kdt.please.domain.recruitTag.RecruitTagMap;
 import com.kdt.please.global.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Getter
-@Builder
+@Setter
+@SuperBuilder
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 public class Recruit extends BaseEntity {
 
     @Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long recruitId;
 
     @ManyToOne
-    @JoinColumn(name = "recruiter_id")
-    private Recruiter recruiter;
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+    @OneToOne
+    @JoinColumn(name = "job_code")
+    private JobCode jobCode;
 
     private String title;
 
     private String content;
 
-    private LocalDate endTime;
+    private LocalDate expiredAt;
+
+    private String salaryType;
 
     private Integer salary;
 
     private String workType;
 
-    private String jobType;
+    private String workLocation;
 
-    private String region;
+    private LocalDate workStartDate;
 
-    private String day;
+    private LocalDate workEndDate;
 
-    private String time;
+    private int workDaysWeek;
 
-    private Double latitude;
+    private int workStartHour;
 
-    private Double longitude;
+    private int workEndHour;
+
+    private String gender;
+
+    @OneToMany(mappedBy = "recruit", cascade = CascadeType.REMOVE)
+    private List<Apply> apply;
+
+    @OneToMany(mappedBy = "recruit", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Set<RecruitTagMap> tags = new HashSet<>();
+
+    public  void changeRecruit(RecruitUpdateRequest req) {
+        this.title = req.title();
+        this.content = req.content();
+        this.expiredAt = req.expiredAt();
+        this.salary = req.salary();
+        this.salaryType = req.salaryType();
+        this.workType = req.workType();
+        this.workLocation = req.workLocation();
+        this.workStartDate = req.workStartDate();
+        this.workEndDate = req.workEndDate();
+        this.workDaysWeek = req.workDaysWeek();
+        this.workStartHour = req.workStartHour();
+        this.gender = req.gender();
+        this.workEndHour = req.workEndHour();
+    }
+
 }
