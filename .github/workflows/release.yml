@@ -19,9 +19,6 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
-    
-    - name: Remove Docker Compose cache
-      run: rm -f docker-compose.yml
 
     # build spring
     - name: Set up JDK 17
@@ -91,6 +88,7 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         script: |
           sudo docker rm -f $(docker ps -qa)
+          sudo docker builder prune
           sudo docker pull ${{ secrets.DOCKER_REPO }}/please-server
           sudo docker pull ${{ env.FLASK_APP_NAME }}
           sudo docker pull nginx
