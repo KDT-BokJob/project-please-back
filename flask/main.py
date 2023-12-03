@@ -1,11 +1,13 @@
-from dotenv import dotenv_values
+# from dotenv import dotenv_values
+import os
+
 from flask import Flask, request, jsonify
 from flask import render_template
 
 from src.db.db import get_filtered_recruit_id
 
 app = Flask(__name__)
-config = dotenv_values(".flaskenv")
+# config = dotenv_values(".flaskenv")
 
 
 @app.errorhandler(404)
@@ -21,8 +23,8 @@ def hello_world():
 @app.route('/hello/')
 @app.route('/hello/<name>')
 def hello(name=None):
-    return render_template('hello.html', name=name, FLASK_RUN_PORT=config["FLASK_RUN_PORT"],
-                           SPRING_RUN_PORT=config["SPRING_RUN_PORT"])
+    return render_template('hello.html', name=name, FLASK_RUN_PORT=os.environ["FLASK_RUN_PORT"],
+                           SPRING_RUN_PORT=os.environ["SPRING_RUN_PORT"])
 
 
 @app.route('/fetch/example')
@@ -51,8 +53,7 @@ def get_join():
 @app.route('/recruit/filter', methods=['GET'])
 def get_filtered_recruit():
     arguments = request.args
-    df = get_filtered_recruit_id(arguments);
-    # print(arguments)
+    df = get_filtered_recruit_id(arguments)
     return jsonify({"args": request.args, "data": df.to_dict('records')})
 
 

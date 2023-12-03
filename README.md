@@ -12,7 +12,7 @@ This repository contains the back-end services for Project Please, an applicatio
 - `spring-service`: Core back-end logic written in Java Spring
 - `python-service`: Additional Python microservice for supplemental features
 - MySQL database
-- Nginx as reverse proxy between the services (soon added)
+- Nginx as reverse proxy between the services
 
 ## CI/CD
 
