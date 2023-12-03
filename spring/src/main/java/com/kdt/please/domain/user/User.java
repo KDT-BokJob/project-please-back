@@ -1,5 +1,6 @@
 package com.kdt.please.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kdt.please.domain.company.Company;
 import lombok.*;
 
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
