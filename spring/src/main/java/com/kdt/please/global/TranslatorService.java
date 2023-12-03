@@ -39,31 +39,18 @@ public class TranslatorService {
         headers.set("Content-Type", "application/json");
         headers.set("Ocp-Apim-Subscription-Region" , "koreacentral");
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.disable(JsonWriteFeature.QUOTE_FIELD_NAMES.mappedFeature());
         User user = User.builder()
                 .email("e@d")
                 .name("ge")
                 .role(UserRole.USER)
                 .build();
         String string = user.toString();
-        string.substring(5, string.length() - 2);
+        string = string.substring(5, string.length() - 1);
         string.replace("=", ":");
         string.replace(",", "");
-
-        String text = "";
-        try {
-            String jsonString = objectMapper.writeValueAsString(user);
-
-            System.out.println(jsonString);
-            text = jsonString;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-//        text.replace("\"", "");
         string = "[{\"Text\": \"" + string + "\"}]";
-        System.out.println(string); //"[{\"Text\": \"{userId:null}\"}]"
-        HttpEntity<String> requestEntity = new HttpEntity<>("[{\"Text\": \"{userId:null}\"}]" , headers);
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(string , headers);
         ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.POST, requestEntity, String.class);
 
         return responseEntity.getBody();
