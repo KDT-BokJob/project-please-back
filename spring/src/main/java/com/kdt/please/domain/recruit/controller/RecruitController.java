@@ -6,6 +6,7 @@ import com.kdt.please.domain.recruit.service.request.RecruitUpdateRequest;
 import com.kdt.please.domain.recruit.service.response.RecruitApplyResponse;
 import com.kdt.please.domain.recruit.service.response.RecruitResponse;
 import com.kdt.please.domain.recruit.service.response.RecruitSimpleResponse;
+import com.kdt.please.global.TranslatorService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,13 @@ import java.util.List;
 @RequestMapping("/recruit")
 public class RecruitController {
     private final RecruitService recruitService;
+    private final TranslatorService translatorService;
 
+    @ApiOperation("번역")
+    @GetMapping("/translate/{recruitId}")
+    public ResponseEntity<String> getTransRecruit(@ApiParam(value = "공고 ID") @PathVariable Long recruitId){
+        return ResponseEntity.ok(translatorService.translateText(recruitService.getRecruit(recruitId).toString(), "ja"));
+    }
     @ApiOperation("공고 등록")
     @PostMapping("")
     public ResponseEntity<Long> createRecruit(@RequestBody @Valid RecruitCreateRequest recruitCreateRequest){
