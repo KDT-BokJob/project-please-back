@@ -1,14 +1,12 @@
 package com.kdt.please.domain.user;
 
 import com.kdt.please.domain.company.Company;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@ToString
 @Getter
 @Builder
 @Entity
