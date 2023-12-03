@@ -79,7 +79,7 @@ jobs:
         docker tag ${{ env.FLASK_APP_NAME }}:latest ${{ env.APP_NAME }}:latest
     - name: Push Docker image
       run: |
-        docker push ${{ env.FLASK_APP_NAME }}:latest
+        docker push ${{ env.FLASK_APP_NAME }}
 
 
     # deployment
