@@ -77,7 +77,11 @@ jobs:
       run: |
         docker build -t ${{ env.FLASK_APP_NAME }} ./flask
         docker push ${{ env.FLASK_APP_NAME }}
-
+        
+    - name: Debugging
+      run: |
+        ls -al ~/project-please-back
+        cat ~/project-please-back/docker-compose.yml
 
     # deployment
     - name: executing remote ssh commands using password
