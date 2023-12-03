@@ -78,11 +78,6 @@ jobs:
         docker build -t ${{ env.FLASK_APP_NAME }} ./flask
         docker push ${{ env.FLASK_APP_NAME }}
         
-    - name: Debugging
-      run: |
-        ls -al ~/project-please-back
-        cat ~/project-please-back/docker-compose.yml
-
     # deployment
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
@@ -96,5 +91,6 @@ jobs:
           sudo docker pull ${{ secrets.DOCKER_REPO }}/please-server
           sudo docker pull ${{ env.FLASK_APP_NAME }}
           sudo docker pull nginx
+          cat ~/project-please-back/docker-compose.yml
           docker-compose -f ~/project-please-back/docker-compose.yml up -d
           docker image prune -f
