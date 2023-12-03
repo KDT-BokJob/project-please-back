@@ -19,10 +19,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                 .authorizeRequests()
-                /*.antMatchers("/", "/login").permitAll()
-                .antMatchers("/oauth2/authorization/**","/login/oauth2/code/**").permitAll()
-                .antMatchers("/**").hasAnyRole("USER", "RECRUITER")*/
-                .anyRequest().authenticated()
+                .antMatchers("/", "/login").permitAll()
+                /*.antMatchers("/oauth2/authorization/**","/login/oauth2/code/**").permitAll()
+                .antMatchers("/**").hasAnyRole("USER", "RECRUITER")
+                .anyRequest().authenticated()*/
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")
