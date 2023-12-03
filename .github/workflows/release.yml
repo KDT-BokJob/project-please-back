@@ -73,12 +73,9 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_FLASK_USERNAME }}
         password: ${{ secrets.DOCKERHUB_FLASK_PASSWORD }}
-    - name: Build Docker image
+    - name: web docker build and push
       run: |
         docker build -t ${{ env.FLASK_APP_NAME }} ./flask
-        docker tag ${{ env.FLASK_APP_NAME }}:latest ${{ env.APP_NAME }}:latest
-    - name: Push Docker image
-      run: |
         docker push ${{ env.FLASK_APP_NAME }}
 
 
