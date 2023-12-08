@@ -25,6 +25,7 @@ public record RecruitResponse(
         LocalDate expiredAt,
         // 급여
         Integer salary,
+        String salaryType,
         // 근무 형태
         String workType,
         // 장소
@@ -60,6 +61,7 @@ public record RecruitResponse(
                 .createdAt(recruit.getCreatedAt())
                 .expiredAt(recruit.getExpiredAt())
                 .salary(recruit.getSalary())
+                .salaryType(recruit.getSalaryType())
                 .workType(recruit.getWorkType())
                 .workLocation(recruit.getWorkLocation())
                 .workStartHour(recruit.getWorkStartHour())

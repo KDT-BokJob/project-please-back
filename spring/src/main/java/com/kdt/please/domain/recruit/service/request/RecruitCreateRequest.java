@@ -21,6 +21,8 @@ public record RecruitCreateRequest(
         LocalDate expiredAt,
         @NotNull
         Integer salary,
+
+        String salaryType,
         @NotNull
         String workType,
         @NotNull
@@ -50,6 +52,7 @@ public record RecruitCreateRequest(
                 .content(content)
                 .expiredAt(expiredAt)
                 .salary(salary)
+                .salaryType(salaryType)
                 .workType(workType)
                 .workLocation(workLocation)
                 .workStartDate(workStartDate)
