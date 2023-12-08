@@ -53,13 +53,23 @@ public class Recruit extends BaseEntity {
 
     private LocalDate workEndDate;
 
-    private int workDaysWeek;
-
     private int workStartHour;
 
     private int workEndHour;
 
     private String gender;
+
+    private String workDays;
+
+    private int count;
+
+    private String fileUrl;
+
+    private Boolean isTimeFlexible;
+
+    private Boolean isPeriodFlexible;
+
+    private String preferredNationality;
 
     @OneToMany(mappedBy = "recruit", cascade = CascadeType.REMOVE)
     private List<Apply> apply;
@@ -77,10 +87,13 @@ public class Recruit extends BaseEntity {
         this.workLocation = req.workLocation();
         this.workStartDate = req.workStartDate();
         this.workEndDate = req.workEndDate();
-        this.workDaysWeek = req.workDaysWeek();
         this.workStartHour = req.workStartHour();
         this.gender = req.gender();
         this.workEndHour = req.workEndHour();
+        this.count = req.count();
+        this.isTimeFlexible = req.isTimeFlexible();
+        this.isPeriodFlexible = req.isPeriodFlexible();
+        this.preferredNationality = req.preferredNationality();
     }
 
 }
