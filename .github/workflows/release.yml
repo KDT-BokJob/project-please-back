@@ -84,9 +84,9 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_KEY }}
         script: |
+          cd ~/project-please-back/
           sudo docker rm -f $(docker ps -qa)
-          sudo docker pull ${{ secrets.DOCKER_REPO }}/please-server
-          sudo docker pull ${{ env.FLASK_APP_NAME }}
-          sudo docker pull nginx
+          docker image prune -a
+          docker volume prune -a
           cat ~/project-please-back/docker-compose.yml
           docker-compose -f ~/project-please-back/docker-compose.yml up -d
