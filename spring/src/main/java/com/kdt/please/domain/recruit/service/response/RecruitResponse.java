@@ -36,13 +36,21 @@ public record RecruitResponse(
         // 근무 기간
         LocalDate workStartDate,
         LocalDate workEndDate,
-        // 주중 근무 일수
-        int workDaysWeek,
         String gender,
         List<String> visa,
-        List<String> tags
+        List<String> tags,
+        List<String> workDays,
+        int count,
+
+        String fileUrl,
+
+        boolean isTimeFlexible,
+
+        boolean isPeriodFlexible,
+        String preferredNationality
+
 ) {
-    public static RecruitResponse from(Recruit recruit, List<String> visaList, List<String> tagList){
+    public static RecruitResponse from(Recruit recruit, List<String> visaList, List<String> tagList, List<String> workDayList){
         return RecruitResponse.builder()
                 .recruitId(recruit.getRecruitId())
                 .companyResponse(CompanyResponse.from(recruit.getCompany()))
@@ -58,10 +66,15 @@ public record RecruitResponse(
                 .workEndHour(recruit.getWorkEndHour())
                 .workStartDate(recruit.getWorkStartDate())
                 .workEndDate(recruit.getWorkEndDate())
-                .workDaysWeek(recruit.getWorkDaysWeek())
                 .gender(recruit.getGender())
                 .visa(visaList)
                 .tags(tagList)
+                .workDays(workDayList)
+                .count(recruit.getCount())
+                .fileUrl(recruit.getFileUrl())
+                .isTimeFlexible(recruit.getIsTimeFlexible())
+                .isPeriodFlexible(recruit.getIsPeriodFlexible())
+                .preferredNationality(recruit.getPreferredNationality())
                 .build();
 
     }

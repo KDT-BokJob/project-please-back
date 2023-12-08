@@ -16,18 +16,21 @@ import com.kdt.please.domain.recruitTag.RecruitTag;
 import com.kdt.please.domain.recruitTag.RecruitTagMap;
 import com.kdt.please.domain.recruitTag.repository.RecruitTagMapRepository;
 import com.kdt.please.domain.recruitTag.repository.RecruitTagRepository;
+import com.kdt.please.exception.BaseResponseStatus;
+import com.kdt.please.exception.CustomException;
+import com.kdt.please.global.S3Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -42,14 +45,23 @@ public class RecruitService {
     private final VisaFilterRepository visaFilterRepository;
     private final RecruitTagRepository recruitTagRepository;
     private final RecruitTagMapRepository recruitTagMapRepository;
+    private final S3Service s3Service;
     private final JobService jobService;
 
-    public Long createRecruit(RecruitCreateRequest recruitCreateRequest){
+    public Long createRecruit(RecruitCreateRequest recruitCreateRequest, MultipartFile file) throws IOException {
         Recruit recruit = recruitCreateRequest.toEntity();
         recruit.setCompany(companyRepository.findById(recruitCreateRequest.companyId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 기업이 존재하지 않습니다.")));
+        String fileUrl = "";
+        if(file != null) {
+            fileUrl = s3Service.saveFile(file);
+        }
+        recruit.setFileUrl(fileUrl);
         recruit.setJobCode(jobService.getJobCodeByJobName(recruitCreateRequest.jobName()));
+        recruit.setWorkDays(listToString(recruitCreateRequest.workDays()));
+
         recruitRepository.save(recruit);
+
         // 태그 추가
         HashSet<RecruitTagMap> recruitTagMaps = new HashSet<>();
         List<String> tagNames = recruitCreateRequest.tags();
@@ -77,15 +89,22 @@ public class RecruitService {
         for (RecruitTagMap recruitTagMap: recruit.getTags()) {
             tagNames.add(recruitTagMap.getTag().getName());
         }
-        return RecruitResponse.from(recruit, findVisaList(recruit.getJobCode().getJobCode()), tagNames);
+        return RecruitResponse.from(recruit, findVisaList(recruit.getJobCode().getJobCode()), tagNames, stringToList(recruit.getWorkDays()));
     }
 
-    public RecruitResponse updateRecruit(Long recruitId, RecruitUpdateRequest recruitUpdateRequest){
+    public RecruitResponse updateRecruit(Long recruitId, RecruitUpdateRequest recruitUpdateRequest, MultipartFile file) throws IOException {
         Recruit recruit = recruitRepository.findById(recruitId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 공고가 존재하지 않습니다."));
-
+        String fileUrl = "";
+        if(file != null) {
+            fileUrl = s3Service.saveFile(file);
+        }
+        recruit.setCompany(companyRepository.findById(recruitUpdateRequest.companyId())
+                .orElseThrow(() -> new CustomException(BaseResponseStatus.DATA_NOT_FOUND)));
+        recruit.setFileUrl(fileUrl);
         recruit.changeRecruit(recruitUpdateRequest);
         recruit.setJobCode(jobService.getJobCodeByJobName(recruitUpdateRequest.jobName()));
+        recruit.setWorkDays(listToString(recruitUpdateRequest.workDays()));
         recruitTagMapRepository.deleteByRecruit(recruitId);
         recruitRepository.save(recruit);
 
@@ -103,7 +122,7 @@ public class RecruitService {
                 recruitTagMapRepository.save(recruitTagMap);
             }
         }
-        return RecruitResponse.from(recruit, findVisaList(recruit.getJobCode().getJobCode()), tagNames);
+        return RecruitResponse.from(recruit, findVisaList(recruit.getJobCode().getJobCode()), tagNames, recruitUpdateRequest.workDays());
     }
 
     public void deleteRecruit(Long recruitId){
@@ -154,6 +173,18 @@ public class RecruitService {
             visaList.add(visaFilter.getId().getVisa().getVisa());
         }
         return visaList;
+    }
+
+    private static String listToString(List<String> array) {
+        StringJoiner joiner = new StringJoiner(",");
+        for (String value : array) {
+            joiner.add(value);
+        }
+        return joiner.toString();
+    }
+
+    private static List<String> stringToList(String string){
+        return Arrays.asList(string.split(","));
     }
 
 }

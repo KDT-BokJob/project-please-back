@@ -33,11 +33,15 @@ public record RecruitCreateRequest(
         LocalDate workStartDate,
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         LocalDate workEndDate,
-        int workDaysWeek,
 
         String gender,
 
-        List<String> tags
+        List<String> tags,
+        List<String> workDays,
+        int count,
+        boolean isTimeFlexible,
+        boolean isPeriodFlexible,
+        String preferredNationality
 
 ) {
     public Recruit toEntity(){
@@ -48,12 +52,15 @@ public record RecruitCreateRequest(
                 .salary(salary)
                 .workType(workType)
                 .workLocation(workLocation)
-                .workDaysWeek(workDaysWeek)
                 .workStartDate(workStartDate)
                 .workEndDate(workEndDate)
                 .workStartHour(workStartHour)
                 .workEndHour(workEndHour)
                 .gender(gender)
+                .count(count)
+                .isTimeFlexible(isTimeFlexible)
+                .isPeriodFlexible(isPeriodFlexible)
+                .preferredNationality(preferredNationality)
                 .build();
     }
 }

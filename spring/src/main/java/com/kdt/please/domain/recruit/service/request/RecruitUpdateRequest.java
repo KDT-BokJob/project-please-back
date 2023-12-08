@@ -44,11 +44,16 @@ public record RecruitUpdateRequest(
         LocalDate workStartDate,
         LocalDate workEndDate,
         // 주중 근무 일수
-
-        int workDaysWeek,
         String salaryType,
         String gender,
-        List<String> tags
+        List<String> tags,
+        List<String> workDays,
+        int count,
+
+        boolean isTimeFlexible,
+
+        boolean isPeriodFlexible,
+        String preferredNationality
 
 ) {
         public Recruit toEntity(){
@@ -61,12 +66,15 @@ public record RecruitUpdateRequest(
                         .salaryType(salaryType)
                         .workType(workType)
                         .workLocation(workLocation)
-                        .workDaysWeek(workDaysWeek)
                         .workStartDate(workStartDate)
                         .workEndDate(workEndDate)
                         .workStartHour(workStartHour)
                         .workEndHour(workEndHour)
                         .gender(gender)
+                        .count(count)
+                        .isTimeFlexible(isTimeFlexible)
+                        .isPeriodFlexible(isPeriodFlexible)
+                        .preferredNationality(preferredNationality)
                         .build();
         }
 }
