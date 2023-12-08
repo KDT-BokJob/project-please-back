@@ -92,5 +92,3 @@ jobs:
           sudo docker pull nginx
           cat ~/project-please-back/docker-compose.yml
           docker-compose -f ~/project-please-back/docker-compose.yml up -d
-
-          
