@@ -5,6 +5,7 @@ import com.kdt.please.domain.company.repository.CompanyRepository;
 import com.kdt.please.domain.filter.JobService;
 import com.kdt.please.domain.filter.VisaFilter;
 import com.kdt.please.domain.filter.VisaFilterRepository;
+import com.kdt.please.domain.languageMapping.repository.LanguageMappingRepository;
 import com.kdt.please.domain.recruit.Recruit;
 import com.kdt.please.domain.recruit.repository.RecruitRepository;
 import com.kdt.please.domain.recruit.service.request.RecruitCreateRequest;
@@ -18,7 +19,9 @@ import com.kdt.please.domain.recruitTag.repository.RecruitTagMapRepository;
 import com.kdt.please.domain.recruitTag.repository.RecruitTagRepository;
 import com.kdt.please.exception.BaseResponseStatus;
 import com.kdt.please.exception.CustomException;
+import com.kdt.please.global.Language;
 import com.kdt.please.global.S3Service;
+import com.kdt.please.global.TranslatorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -45,6 +48,8 @@ public class RecruitService {
     private final VisaFilterRepository visaFilterRepository;
     private final RecruitTagRepository recruitTagRepository;
     private final RecruitTagMapRepository recruitTagMapRepository;
+    private final TranslatorService translatorService;
+    private final LanguageMappingRepository languageMappingRepository;
     private final S3Service s3Service;
     private final JobService jobService;
 
@@ -79,10 +84,17 @@ public class RecruitService {
             }
         }
 
+        // 번역
+        String KoreaRecruitId = String.valueOf(recruit.getRecruitId());
+        languageMappingRepository.deleteByKoreaId(KoreaRecruitId);
+        for(Language language : Language.values()){
+            translatorService.translateText(recruit.getRecruitId(), language.getCode());
+        }
+
         return recruit.getRecruitId();
     }
 
-    public RecruitResponse getRecruit(Long recruitId){
+    public RecruitResponse getRecruit(Long recruitId, String language){
         Recruit recruit = recruitRepository.findById(recruitId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 공고가 존재하지 않습니다."));
         List<String> tagNames = new ArrayList<>();

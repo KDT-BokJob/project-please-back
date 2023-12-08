@@ -1,5 +1,7 @@
 package com.kdt.please.domain.recruit;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.kdt.please.domain.apply.Apply;
 import com.kdt.please.domain.company.Company;
 import com.kdt.please.domain.filter.JobCode;
@@ -15,6 +17,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@ToString
 @Getter
 @Setter
 @SuperBuilder
@@ -29,6 +32,7 @@ public class Recruit extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "company_id")
+    @JsonBackReference
     private Company company;
 
     @OneToOne
@@ -71,9 +75,11 @@ public class Recruit extends BaseEntity {
 
     private String preferredNationality;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "recruit", cascade = CascadeType.REMOVE)
     private List<Apply> apply;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "recruit", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<RecruitTagMap> tags = new HashSet<>();
 

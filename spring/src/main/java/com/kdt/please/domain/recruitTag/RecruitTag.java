@@ -1,5 +1,6 @@
 package com.kdt.please.domain.recruitTag;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,5 +20,6 @@ public class RecruitTag {
     private String name;
 
     @OneToMany(mappedBy = "tag")
+    @JsonManagedReference(value = "tag")
     private Set<RecruitTagMap> postTags = new HashSet<>();
 }

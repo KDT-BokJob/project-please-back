@@ -1,5 +1,6 @@
 package com.kdt.please.domain.apply;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.kdt.please.domain.recruit.Recruit;
 import com.kdt.please.domain.user.User;
 import com.kdt.please.global.BaseEntity;
@@ -27,6 +28,7 @@ public class Apply extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "recruit_id")
+    @JsonBackReference
     private Recruit recruit;
 
     private Long resumeId;

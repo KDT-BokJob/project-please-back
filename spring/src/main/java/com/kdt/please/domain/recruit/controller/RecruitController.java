@@ -26,11 +26,6 @@ public class RecruitController {
     private final RecruitService recruitService;
     private final TranslatorService translatorService;
 
-    @ApiOperation("번역")
-    @GetMapping("/translate/{recruitId}")
-    public ResponseEntity<String> getTransRecruit(@ApiParam(value = "공고 ID") @PathVariable Long recruitId){
-        return ResponseEntity.ok(translatorService.translateText(recruitService.getRecruit(recruitId).toString(), "ja"));
-    }
     @ApiOperation("공고 등록")
     @PostMapping("")
     public ResponseEntity<Long> createRecruit(@RequestPart(value = "dto") @Valid RecruitCreateRequest recruitCreateRequest,
@@ -48,9 +43,10 @@ public class RecruitController {
     }
 
     @ApiOperation("공고 조회")
-    @GetMapping("/{recruitId}")
-    public ResponseEntity<RecruitResponse> getRecruit(@ApiParam(value = "공고 ID") @PathVariable Long recruitId){
-        return ResponseEntity.ok(recruitService.getRecruit(recruitId));
+    @GetMapping("/{language}/{recruitId}")
+    public ResponseEntity<RecruitResponse> getRecruit(@ApiParam(value = "언어") @PathVariable String language,
+                                                      @ApiParam(value = "공고 ID") @PathVariable Long recruitId){
+        return ResponseEntity.ok(recruitService.getRecruit(recruitId, language));
     }
 
     @ApiOperation("공고 삭제")

@@ -1,5 +1,6 @@
 package com.kdt.please.domain.company;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.kdt.please.domain.company.service.request.CompanyUpdateRequest;
 import com.kdt.please.domain.recruit.Recruit;
 import com.kdt.please.domain.user.User;
@@ -40,6 +41,7 @@ public class Company {
     private String image;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.REMOVE)
+    @JsonManagedReference
     private List<Recruit> recruits;
 
     public void changeCompany(CompanyUpdateRequest req){

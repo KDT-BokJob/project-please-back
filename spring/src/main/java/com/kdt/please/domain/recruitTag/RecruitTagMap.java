@@ -1,5 +1,6 @@
 package com.kdt.please.domain.recruitTag;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.kdt.please.domain.recruit.Recruit;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,9 +20,11 @@ public class RecruitTagMap {
 
     @ManyToOne
     @JoinColumn(name = "recruit_id")
+    @JsonBackReference
     private Recruit recruit;
 
     @ManyToOne
     @JoinColumn(name = "tag_id")
+    @JsonBackReference(value = "tag")
     private RecruitTag tag;
 }
