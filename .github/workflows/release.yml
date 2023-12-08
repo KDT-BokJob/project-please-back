@@ -83,7 +83,7 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.EC2_HOST }}
-        username: ubuntu
+        username: kdtplease
         key: ${{ secrets.EC2_KEY }}
         script: |
           sudo docker rm -f $(docker ps -qa)
@@ -93,4 +93,3 @@ jobs:
           sudo docker pull nginx
           cat ~/project-please-back/docker-compose.yml
           docker-compose -f ~/project-please-back/docker-compose.yml up -d
-          docker image prune -f
