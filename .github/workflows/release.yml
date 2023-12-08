@@ -83,11 +83,10 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.EC2_HOST }}
-        username: kdtplease
+        username: ubuntu
         key: ${{ secrets.EC2_KEY }}
         script: |
           sudo docker rm -f $(docker ps -qa)
-          sudo docker builder prune
           sudo docker pull ${{ secrets.DOCKER_REPO }}/please-server
           sudo docker pull ${{ env.FLASK_APP_NAME }}
           sudo docker pull nginx
