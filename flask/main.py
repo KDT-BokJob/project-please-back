@@ -32,7 +32,7 @@ def api():
 
 @app.route('/echo/<param>')
 def get_echo_call(param):
-    return jsonify({"param": param})
+    return jsonify({"param": param, "url": request.url})
 
 
 @app.route('/echo', methods=['POST'])
