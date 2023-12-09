@@ -22,13 +22,12 @@ services:
       - 33060
 
   app_spring:
-    hostname: springHost
     image: jh0903/please-server
 #    build:
 #      context: spring
     restart: always
-    expose:
-      - 8080
+    ports:
+      - "8080:8080"
     depends_on:
       mysql_db:
         condition: service_healthy
