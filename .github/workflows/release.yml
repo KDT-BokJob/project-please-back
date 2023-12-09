@@ -86,7 +86,7 @@ jobs:
           script: |
             cd ~/project-please-back/
             sudo docker rm -f $(docker ps -qa)
-            docker image prune -a -f
-            docker volume prune -a -f
+            sudo docker image prune -a -f
+            sudo docker volume prune -a -f
             cat ~/project-please-back/docker-compose.yml
             docker-compose -f ~/project-please-back/docker-compose.yml up -d
