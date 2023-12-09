@@ -61,7 +61,6 @@ services:
     restart: always
     ports:
       - "80:80"
-      - "8080"
     depends_on:
       app_spring:
         condition: service_started

@@ -84,9 +84,8 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
           script: |
-            cd ~/project-please-back/
             sudo docker rm -f $(docker ps -qa)
             sudo docker image prune -a -f
             sudo docker volume prune -a -f
             cat ~/project-please-back/docker-compose.yml
-            docker-compose -f ~/project-please-back/docker-compose.yml up -d
+            sudo docker-compose -f ~/project-please-back/docker-compose.yml up -d
