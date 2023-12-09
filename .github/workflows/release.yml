@@ -85,7 +85,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             sudo docker rm -f $(docker ps -qa)
-            sudo docker image prune -a -f
-            sudo docker volume prune -a -f
+            sudo docker image prune -af
+            sudo docker volume prune -af
             cat ~/project-please-back/docker-compose.yml
             sudo docker-compose -f ~/project-please-back/docker-compose.yml up -d
