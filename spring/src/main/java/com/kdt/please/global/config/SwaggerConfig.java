@@ -21,7 +21,8 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.any()) // Controller가 들어있는 패키지. 이 경로의 하위에 있는 api만 표시됨.
                 .paths(PathSelectors.any()) // 위 패키지 안의 api 중 지정된 path만 보여줌. (any()로 설정 시 모든 api가 보여짐)
-                .build();
+                .build()
+                .pathMapping("/spring");
     }
 
     public ApiInfo apiInfo() {
