@@ -6,14 +6,17 @@ import com.kdt.please.domain.recruit.service.request.RecruitUpdateRequest;
 import com.kdt.please.domain.recruit.service.response.RecruitApplyResponse;
 import com.kdt.please.domain.recruit.service.response.RecruitResponse;
 import com.kdt.please.domain.recruit.service.response.RecruitSimpleResponse;
+import com.kdt.please.domain.resume.service.request.ResumeCreateRequest;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -24,15 +27,17 @@ public class RecruitController {
 
     @ApiOperation("공고 등록")
     @PostMapping("")
-    public ResponseEntity<Long> createRecruit(@RequestBody @Valid RecruitCreateRequest recruitCreateRequest){
-        return ResponseEntity.ok(recruitService.createRecruit(recruitCreateRequest));
+    public ResponseEntity<Long> createRecruit(@RequestPart(value = "dto") @Valid RecruitCreateRequest recruitCreateRequest,
+                                              @RequestPart(value = "file", required = false) MultipartFile file) throws IOException {
+        return ResponseEntity.ok(recruitService.createRecruit(recruitCreateRequest, file));
     }
 
     @ApiOperation("공고 수정")
     @PutMapping("/{recruitId}")
     public ResponseEntity<RecruitResponse> updateRecruit(@ApiParam(value = "공고 ID") @PathVariable Long recruitId,
-                                                         @RequestBody @Valid RecruitUpdateRequest recruitUpdateRequest){
-        RecruitResponse recruitResponse = recruitService.updateRecruit(recruitId, recruitUpdateRequest);
+                                                         @RequestPart(value = "dto") @Valid RecruitUpdateRequest recruitUpdateRequest,
+                                                         @RequestPart(value = "file", required = false) MultipartFile file) throws IOException {
+        RecruitResponse recruitResponse = recruitService.updateRecruit(recruitId, recruitUpdateRequest, file);
         return ResponseEntity.ok(recruitResponse);
     }
 

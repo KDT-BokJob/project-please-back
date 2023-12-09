@@ -23,4 +23,8 @@ public record UserInfoResponse(
                 .role(user.getRole())
                 .build();
     }
+
+    public static UserInfoResponse from(User user){
+        return new UserInfoResponse(user.getUserId(), user.getEmail(), user.getName(), user.getProfileImage(), user.getRole());
+    }
 }

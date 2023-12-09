@@ -5,6 +5,7 @@ import com.kdt.please.domain.recruit.Recruit;
 import java.util.List;
 
 public record RecruitApplyResponse(
+        Long recruitId,
         String title,
         String companyName,
         String jobName,
@@ -14,7 +15,7 @@ public record RecruitApplyResponse(
         int applicantCount
 ) {
     public static RecruitApplyResponse from(Recruit recruit, List<String> visaList, int applicantCount){
-        return new RecruitApplyResponse(recruit.getTitle(), recruit.getCompany().getName(),
+        return new RecruitApplyResponse(recruit.getRecruitId(), recruit.getTitle(), recruit.getCompany().getName(),
                 recruit.getJobCode().getJobName(), recruit.getSalary(), recruit.getWorkLocation(), visaList, applicantCount);
     }
 }
