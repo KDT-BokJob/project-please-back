@@ -1,12 +1,3 @@
-import os
-from pprint import pprint
-
-import openai
-from dotenv import load_dotenv
-
-load_dotenv()
-
-
 # def x():
 #     from openai import OpenAI
 #     client = OpenAI()
