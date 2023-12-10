@@ -17,6 +17,6 @@ public interface LanguageMappingRepository extends JpaRepository<LanguageMapping
    @Transactional
    @Modifying
    @Query("DELETE FROM LanguageMapping lm WHERE lm.koreaId = :koreaId")
-   void deleteByKoreaId(@Param("koreaId") String koreaId);
-
+   void deleteByKoreaId(@Param("koreaId") Long koreaId);
+   Optional<LanguageMapping> findByCountryCodeAndKoreaId(String countryCode, Long koreaId);
 }

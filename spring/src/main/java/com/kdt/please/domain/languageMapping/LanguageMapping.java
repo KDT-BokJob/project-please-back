@@ -19,8 +19,8 @@ public class LanguageMapping {
     private String countryCode;
 
     @Column(nullable = false)
-    private String koreaId;
+    private Long koreaId;
 
     @Column(nullable = false)
-    private String foreignId;
+    private Long foreignId;
 }

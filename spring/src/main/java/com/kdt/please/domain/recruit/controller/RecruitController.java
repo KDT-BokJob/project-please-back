@@ -6,6 +6,7 @@ import com.kdt.please.domain.recruit.service.request.RecruitUpdateRequest;
 import com.kdt.please.domain.recruit.service.response.RecruitApplyResponse;
 import com.kdt.please.domain.recruit.service.response.RecruitResponse;
 import com.kdt.please.domain.recruit.service.response.RecruitSimpleResponse;
+import com.kdt.please.global.Language;
 import com.kdt.please.global.TranslatorService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -31,6 +32,14 @@ public class RecruitController {
     public ResponseEntity<Long> createRecruit(@RequestPart(value = "dto") @Valid RecruitCreateRequest recruitCreateRequest,
                                               @RequestPart(value = "file", required = false) MultipartFile file) throws IOException {
         return ResponseEntity.ok(recruitService.createRecruit(recruitCreateRequest, file));
+    }
+
+    @GetMapping("/transferTest")
+    public ResponseEntity<?> testTransfer(){
+        for(Language l : Language.values()) {
+            translatorService.translateText(1L, l.getCode());
+        }
+        return ResponseEntity.ok().build();
     }
 
     @ApiOperation("공고 수정")

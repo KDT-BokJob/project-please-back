@@ -19,8 +19,10 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriUtils;
 
 import javax.transaction.Transactional;
+import java.nio.charset.StandardCharsets;
 
 
 @Transactional
@@ -45,9 +47,9 @@ public class TranslatorService {
 
     public void translateText(Long recruitId, String targetLanguage) {
         String uri = endpoint + "translate?api-version=3.0&from=ko&to=" + targetLanguage;
-        System.out.println(uri);
 
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Ocp-Apim-Subscription-Key", apiKey);
@@ -59,9 +61,8 @@ public class TranslatorService {
 
         try {
             // recruit json화 후 Text 객체에 빌드
-            String jsonUser = objectMapper.registerModule(new JavaTimeModule()).writeValueAsString(recruit);
             // Json 앞에 "text": "{Recruit}" 형태로 만들기 위한 Text 객체 빌드
-            Text text = Text.builder().text(jsonUser).build();
+            Text text = Text.builder().text(objectMapper.writeValueAsString(recruit)).build();
 
             // 오브젝트 매퍼로 Text 객체 Json화
             String jsonText = objectMapper.writeValueAsString(text);
@@ -69,17 +70,18 @@ public class TranslatorService {
             // 앞에 대문자 T로 변경 text->Text
             jsonText = jsonText.replace("text", "Text");
             jsonText = jsonText.replace("preferredNationality", "\\\"preferredNationality");
-
             System.out.println(jsonText);
-
             // 양 끝에 대괄호로 닫아주고 API 전송
             HttpEntity<String> requestEntity = new HttpEntity<>("[" + jsonText + "]", headers);
             ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.POST, requestEntity, String.class);
             // 받은 결과물에서 대괄호 제거
             String result = responseEntity.getBody().substring(1, responseEntity.getBody().length()-1);
 
-            System.out.println("-----------------");
-            System.out.println(result);
+            result = result.replace("“", "\\\"");
+            result = result.replace("”", "\\\"");
+            result = result.replace("：", ":");
+            result = result.replace("，", ",");
+
             // translation 객체로 역직렬화
             Translation translation = objectMapper.readValue(result, Translation.class);
 
@@ -90,8 +92,8 @@ public class TranslatorService {
 
             LanguageMapping languageMapping = LanguageMapping.builder()
                         .countryCode(targetLanguage)
-                        .koreaId(String.valueOf(recruit.getRecruitId()))
-                        .foreignId(String.valueOf(newRecruit.getRecruitId()))
+                        .koreaId(recruit.getRecruitId())
+                        .foreignId(newRecruit.getRecruitId())
                         .build();
             languageMappingRepository.save(languageMapping);
 

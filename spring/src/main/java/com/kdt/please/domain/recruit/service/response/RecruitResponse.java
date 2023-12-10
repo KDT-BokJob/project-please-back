@@ -5,6 +5,7 @@ import com.kdt.please.domain.recruit.Recruit;
 import lombok.Builder;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Builder
@@ -20,7 +21,7 @@ public record RecruitResponse(
         // 내용
         String content,
         // 작성일
-        LocalDate createdAt,
+        LocalDateTime createdAt,
         // 마감일
         LocalDate expiredAt,
         // 급여

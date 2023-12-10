@@ -8,9 +8,9 @@ import lombok.Getter;
 public enum Language {
     JAPAN("ja"),
     ENGLISH("en"),
-    NEPAL("ne"),
     VIETNAM("vi"),
     CHINA("zh");
+    //NEPAL("ne");
 
     private final String code;
 }

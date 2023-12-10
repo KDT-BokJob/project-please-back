@@ -9,9 +9,9 @@ public record LanguageMappingResponse(
 
         String countryCode,
 
-        String koreaId,
+        Long koreaId,
 
-        String foreignId
+        Long foreignId
 ) {
     public static LanguageMappingResponse from(LanguageMapping languageMapping){
         return LanguageMappingResponse.builder().

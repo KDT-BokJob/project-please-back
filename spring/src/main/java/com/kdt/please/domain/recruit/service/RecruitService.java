@@ -5,6 +5,7 @@ import com.kdt.please.domain.company.repository.CompanyRepository;
 import com.kdt.please.domain.filter.JobService;
 import com.kdt.please.domain.filter.VisaFilter;
 import com.kdt.please.domain.filter.VisaFilterRepository;
+import com.kdt.please.domain.languageMapping.LanguageMapping;
 import com.kdt.please.domain.languageMapping.repository.LanguageMappingRepository;
 import com.kdt.please.domain.recruit.Recruit;
 import com.kdt.please.domain.recruit.repository.RecruitRepository;
@@ -85,8 +86,7 @@ public class RecruitService {
         }
 
         // 번역
-        String KoreaRecruitId = String.valueOf(recruit.getRecruitId());
-        languageMappingRepository.deleteByKoreaId(KoreaRecruitId);
+        languageMappingRepository.deleteByKoreaId(recruit.getRecruitId());
         for(Language language : Language.values()){
             translatorService.translateText(recruit.getRecruitId(), language.getCode());
         }
@@ -95,8 +95,15 @@ public class RecruitService {
     }
 
     public RecruitResponse getRecruit(Long recruitId, String language){
+
+        if(!language.equals("kr")) {
+            recruitId = languageMappingRepository.findByCountryCodeAndKoreaId(language, recruitId)
+                    .orElseThrow(() -> new CustomException(BaseResponseStatus.DATA_NOT_FOUND)).getForeignId();
+        }
+
         Recruit recruit = recruitRepository.findById(recruitId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"해당 공고가 존재하지 않습니다."));
+
         List<String> tagNames = new ArrayList<>();
         for (RecruitTagMap recruitTagMap: recruit.getTags()) {
             tagNames.add(recruitTagMap.getTag().getName());
