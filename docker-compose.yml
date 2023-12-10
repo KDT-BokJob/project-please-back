@@ -58,7 +58,7 @@ services:
   reverse_proxy:
     # build: proxy
     image: oomia/please-reverse-proxy
-    restart: always
+    restart: "always"
     ports:
       - "80:80"
     depends_on:
