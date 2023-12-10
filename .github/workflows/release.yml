@@ -24,7 +24,10 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
           script: |
+            pwd 
             git clone https://github.com/KDT-BokJob/project-please-back.git
+            sudo find ./ -type f -name "docker-compose.yml"
+
             cd ~/project-please-back
             
             docker rm -f project-please-back_reverse_proxy_1
