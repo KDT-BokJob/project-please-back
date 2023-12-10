@@ -66,4 +66,3 @@ services:
         condition: service_started
       app_flask:
         condition: service_started
-

@@ -24,9 +24,14 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
           script: |
-            cd ~/project-please-back/
-            sudo docker rm -f $(docker ps -qa)
-            docker image prune -a
-            docker volume prune -a
+            git clone https://github.com/KDT-BokJob/project-please-back.git
+            cd ~/project-please-back
+            
+            docker rm -f project-please-back_reverse_proxy_1
+            docker rm -f project-please-back_app_flask_1
+            docker rm -f project-please-back_app_spring_1
+            docker image prune
+            docker volume prune
+            
             cat ~/project-please-back/docker-compose.yml
             docker-compose -f ~/project-please-back/docker-compose.yml up -d
