@@ -52,4 +52,4 @@ The production stack on [kdt-please.store](http://kdt-please.store/swagger-ui/in
 ## More Documentation
 
 - [Public Notion page](https://www.notion.so/K-DT-1a46b10690ce4d9299c8ddf0f5379439)
-- [API documentation](http://kdt-please.store/swagger-ui/index.html#/)
+- [API documentation](http://kdt-please.store/spring/swagger-ui/index.html)
