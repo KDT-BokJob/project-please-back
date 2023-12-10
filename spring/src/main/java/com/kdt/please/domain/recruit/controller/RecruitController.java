@@ -41,6 +41,13 @@ public class RecruitController {
         }
         return ResponseEntity.ok().build();
     }
+    @GetMapping("/transferTest2")
+    public ResponseEntity<?> testTransfer(@RequestBody String stext){
+        for(Language l : Language.values()) {
+            translatorService.translateText2(stext, l.getCode());
+        }
+        return ResponseEntity.ok().build();
+    }
 
     @ApiOperation("공고 수정")
     @PutMapping("/{recruitId}")

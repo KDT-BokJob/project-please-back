@@ -101,4 +101,53 @@ public class TranslatorService {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * 텍스트로 확인
+     * @param stext
+     * @param targetLanguage
+     */
+    public void translateText2(String stext, String targetLanguage) {
+        String uri = endpoint + "translate?api-version=3.0&from=ko&to=" + targetLanguage;
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Ocp-Apim-Subscription-Key", apiKey);
+        headers.set("Content-Type", "application/json");
+        headers.set("Ocp-Apim-Subscription-Region" , "koreacentral");
+
+        try {
+            // recruit json화 후 Text 객체에 빌드
+            // Json 앞에 "text": "{Recruit}" 형태로 만들기 위한 Text 객체 빌드
+            Text text = Text.builder().text(stext).build();
+
+            // 오브젝트 매퍼로 Text 객체 Json화
+            String jsonText = objectMapper.writeValueAsString(text);
+
+            // 앞에 대문자 T로 변경 text->Text
+            jsonText = jsonText.replace("text", "Text");
+            jsonText = jsonText.replace("preferredNationality", "\\\"preferredNationality");
+            System.out.println(jsonText);
+            // 양 끝에 대괄호로 닫아주고 API 전송
+            HttpEntity<String> requestEntity = new HttpEntity<>("[" + jsonText + "]", headers);
+            ResponseEntity<String> responseEntity = restTemplate.exchange(uri, HttpMethod.POST, requestEntity, String.class);
+            // 받은 결과물에서 대괄호 제거
+            String result = responseEntity.getBody().substring(1, responseEntity.getBody().length()-1);
+
+            result = result.replace("“", "\\\"");
+            result = result.replace("”", "\\\"");
+            result = result.replace("：", ":");
+            result = result.replace("，", ",");
+
+            // translation 객체로 역직렬화
+            Translation translation = objectMapper.readValue(result, Translation.class);
+
+            System.out.println(translation.getTranslations().get(0).getText().getText());
+
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
