@@ -1,0 +1,26 @@
+name: nginx builder
+env:
+  APP_NAME: ${{ secrets.DOCKERHUB_FLASK_REPO }}/please-reverse-proxy
+on:
+  push:
+    branches: ["dev-nginx"]
+  pull_request:
+    branches: ["dev-nginx"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ env.APP_NAME }} ./proxy
+          docker tag ${{ env.APP_NAME }}:latest ${{ env.APP_NAME }}:latest
+      - name: Push Docker image
+        run: |
+          docker push ${{ env.APP_NAME }}:latest
+          
