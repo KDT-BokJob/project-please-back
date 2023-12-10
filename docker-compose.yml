@@ -27,8 +27,8 @@ services:
 #    build:
 #      context: spring
     restart: always
-    expose:
-      - 8080
+    ports:
+      - "8080:8080"
     depends_on:
       mysql_db:
         condition: service_healthy
@@ -56,8 +56,9 @@ services:
         condition: service_started
 
   reverse_proxy:
-    build: proxy
-    restart: no
+    # build: proxy
+    image: oomia/please-reverse-proxy
+    restart: "always"
     ports:
       - "80:80"
     depends_on:
@@ -65,4 +66,3 @@ services:
         condition: service_started
       app_flask:
         condition: service_started
-
