@@ -23,9 +23,8 @@ services:
 
   app_spring:
     hostname: springHost
-    image: jh0903/please-server
-#    build:
-#      context: spring
+    build:
+      context: spring
     restart: always
     ports:
       - "8080:8080"
@@ -39,8 +38,7 @@ services:
 
   app_flask:
     hostname: flaskHost
-#    build: flask
-    image: oomia/please-server
+    build: flask
     restart: always
     expose:
       - 8000
@@ -56,8 +54,7 @@ services:
         condition: service_started
 
   reverse_proxy:
-    # build: proxy
-    image: oomia/please-reverse-proxy
+    build: proxy
     restart: "always"
     ports:
       - "80:80"
